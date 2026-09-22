@@ -3,6 +3,33 @@
 Release convention: every push to `main` requires a matching versioned note under
 `docs/releases/` and an entry in this file. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## [0.2.1] - 2026-09-22
+
+Independent of 0.2.0 — cut from `main`, no shared files. 0.2.0 landed first, so this keeps 0.2.1.
+
+### Added
+
+- `fleet impact --symbol <name>` now reports the functions that call the symbol, under a new
+  `callers` field. `build_repo_map` already returned `edges: Vec<(SymbolId, SymbolId)>`; the
+  command loaded them on every run and never read them, so `impact --symbol build` answered `5`
+  (five functions *named* `build`) while the repo held 26 places calling one.
+- `src/tests/impact_lists_callers` — 6 tests against the real binary.
+
+### Changed
+
+- `ImpactReport` gains `callers`. `matching_symbols` is unchanged, so existing JSON consumers keep
+  working.
+
+### Notes
+
+- The field is `callers`, not `call_sites`, because an edge carries no call location: a reported
+  line is where the *caller* is defined. A function calling the target three times is one row.
+  `the_reported_line_is_the_callers_own_definition_not_the_call` pins that limit on purpose.
+- Verified on `posx-mokobara-backend` against grep: `customerIdentityPhone` → 5 call locations
+  inside **3** handler functions, reported as 3 callers; `performShopifyReturnWithRefund` → the
+  2 subscribers that call it.
+- `fleet graph` is untouched and still prints only three counts.
+
 ## [0.2.0] - 2026-09-22
 
 ### Added
