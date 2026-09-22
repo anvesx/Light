@@ -69,7 +69,10 @@ Rejected alternatives, with reasons:
 |---|---|
 | GitHub API per query | Network on the hot path; a lane would fail on a rate limit or an offline laptop. Fleet is explicitly local-first. |
 | Vendor the KB into the fleet repo | Couples release cadence of two repos; the KB changes far more often. |
-| MCP server in front of the KB | Adds a process and a protocol to debug before anything works. Reconsider once ① and ② are proven — not first. |
+
+(MCP is deliberately *not* in this table — it is a **serving** mechanism, not a **fetching** one.
+See §2.5.)
+
 
 A git clone gives the **revision** and **digest** that `KnowledgeItem` already requires for free:
 commit SHA is the revision, blob SHA is the per-item `source_digest`. No new provenance
@@ -127,6 +130,40 @@ Retrieval itself should start **lexical, not semantic**. `tantivy` is already a 
 `crates/context`. BM25 over 96 documents will not be the weak link, and it has no model, no
 embedding store, and no drift. Add vectors only when a measured recall failure justifies it.
 
+### ②·5 In-process and MCP are not alternatives
+
+**This is a sequencing question, not an architecture one, and both should exist.**
+
+`KnowledgeStore` is the seam:
+
+```rust
+pub trait KnowledgeStore {
+    fn list(&self, query: &str, scope: &Scope, limit: u32) -> Result<Vec<KnowledgeItem>, KnowledgeError>;
+    fn put_candidate(&self, item: KnowledgeItem) -> Result<(), KnowledgeError>;
+}
+```
+
+An MCP server over the KB is a **thin wrapper around the same `CentralKbStore`**. Building
+in-process first throws nothing away; it just means retrieval is proven before a protocol is
+added on top of it.
+
+**The argument for MCP is stronger than a fleet-only view suggests**, and it is the estate's
+existing design: the Sept 2026 plan says the KB and the analyser are *"both exposed to Fleet via
+MCP"*. An MCP server is readable by **Claude Code, kiro, Cursor and Codex as well as fleet** — so
+the same governed corpus reaches every agent on every developer's machine, not just lanes. Given
+that POSX work happens across several agents today, that reach is most of the value.
+
+**Correcting an objection that does not hold:** MCP does not breach `TARGET.md`'s
+*"fleet is a LOCAL CLI… It is NOT a server"* rule. An MCP server mounted over **stdio is a
+subprocess, not a daemon** — the same shape Claude Code already uses for `context7`. The
+no-server-shaped-machinery constraint is about horizontal scaling, HA and uptime SLOs, none of
+which a stdio MCP server implies.
+
+So the only real claim here is ordering: **in-process first, so that a wrong retrieval design is
+one function to debug rather than a server, a protocol, a client and a function.** Fleet's own
+`fleet mcp` subcommand is a stub today (`fleet-worker`'s sandbox manifest fn is not public), so
+the MCP path is not a smaller step in any case.
+
 ### ④ Promotion
 
 Out of scope here — see [`learning-promotion-loop.md`](./learning-promotion-loop.md).
@@ -177,5 +214,5 @@ Nothing here is built. When it is, these are the claims that need real output:
 
 1. KB refresh policy — explicit, TTL, or per-run. Recommendation: explicit and pinned.
 2. Front-matter scope schema. **Needs a KB-side change**; blocks ②.
-3. MCP or in-process. Recommendation: in-process first; MCP only once there is something to serve.
+3. **Ordering** of in-process vs MCP — see §2.5. The recommendation is sequencing only; both ship.
 4. Whether `playbooks/` is `corpus` (context) or a third kind. It reads like procedure, not fact.

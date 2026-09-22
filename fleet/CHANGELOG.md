@@ -22,6 +22,9 @@ different order.
 ### Notes
 
 - Both are proposals naming their own open decisions, not settled designs.
+- In-process vs MCP is framed as **ordering only** — `KnowledgeStore` is the seam, so an MCP server
+  wraps the same store. MCP over stdio is a subprocess, not a daemon, so it does not breach
+  `TARGET.md`.
 - `FD-8` blocks the KB plan: until a Node repo can pass a gate, a contextualised lane still
   refuses. Order is FD-8 → KB connectivity → promotion loop.
 
