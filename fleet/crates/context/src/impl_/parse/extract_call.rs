@@ -16,6 +16,7 @@ pub fn call(
         Language::Rust => kind == "call_expression",
         Language::Python => kind == "call",
         Language::Bash => kind == "command",
+        Language::TypeScript | Language::Tsx => kind == "call_expression",
     };
     if !is_call {
         return Ok(None);
