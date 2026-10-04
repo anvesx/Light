@@ -3,6 +3,31 @@
 Release convention: every push to `main` requires a matching versioned note under
 `docs/releases/` and an entry in this file. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## [0.2.2] - 2026-09-22
+
+Docs only. Independent of 0.2.0 (`feat/typescript-symbol-graph`) and 0.2.1
+(`feat/impact-call-sites`), both of which are open PRs off `main`. Renumber if they land in a
+different order.
+
+### Added
+
+- `docs/blueprints-next/_research/central-kb-connectivity.md` — how `retail-os-central-kb`
+  (129 files, 96 of them corpus) reaches a builder lane through the existing `knowledge -> context`
+  edge. Records the measured gap: `scan` and `plan` are stubs, `knowledge` is `partial`, and a lane
+  receives only the task string.
+- `docs/blueprints-next/_research/learning-promotion-loop.md` — how a verified failure becomes a
+  rule that blocks, through `verify -> candidate -> offline -> knowledge -> standards`. Records
+  that `offline`, the node preventing one failure from becoming a rule, is greenfield.
+
+### Notes
+
+- Both are proposals naming their own open decisions, not settled designs.
+- In-process vs MCP is framed as **ordering only** — `KnowledgeStore` is the seam, so an MCP server
+  wraps the same store. MCP over stdio is a subprocess, not a daemon, so it does not breach
+  `TARGET.md`.
+- `FD-8` blocks the KB plan: until a Node repo can pass a gate, a contextualised lane still
+  refuses. Order is FD-8 → KB connectivity → promotion loop.
+
 ## [0.1.1] - 2026-09-15
 
 ### Added
