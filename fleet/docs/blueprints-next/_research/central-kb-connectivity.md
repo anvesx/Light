@@ -92,21 +92,56 @@ pub trait KnowledgeStore {
 }
 ```
 
-A `CentralKbStore` implements it over the cloned tree. Per file:
+A `CentralKbStore` implements it over the cloned tree.
+
+**`put_candidate` refuses.** The trait carries both halves of the contract, but this store is a
+reader over an immutable snapshot and has no authority to write. It returns
+`KnowledgeError::ReadOnlySource` naming the pinned commit, and never silently succeeds.
+
+Publishing a candidate is a separate path with its own authorization, and is out of scope for this
+plan. It stages a candidate artifact and opens a pull request against the KB repo through a writer
+that holds its own grant, so the write is reviewable before it lands and carries its own receipt and
+verification. Nothing in the reader can promote content by itself. This keeps knowledge read and
+knowledge propose on opposite sides of the controller boundary, which is where V2 puts them.
+
+Per file:
 
 | `KnowledgeItem` field | Source |
 |---|---|
 | `id` | path-derived, e.g. `DEF-0001` |
-| `kind` | `corpus/**` → `Lesson`; `standards/**` → `Standard` |
+| `kind` | `corpus/**` → `Lesson`; `standards/**` → `Standard`. Basenames starting with `_`, plus `README.md` and `INDEX.md`, are skipped entirely — see reserved files below |
 | `text_ref` | repo-relative path |
 | `source_digest` | git blob SHA |
-| `revision` | commit SHA of the snapshot |
+| `revision` | `git rev-list --count <commit>` — commit depth, which is monotonic and fits `u64` |
+| `commit` | the full 40-char commit SHA of the snapshot, verbatim (**new field, see below**) |
 | `scope` | front-matter (see the open question below) |
 | `evidence_count` | corpus: 0. **Standards must carry a real count** — that is the promotion gate's job, not this reader's. |
 | `expires_at` | front-matter, optional |
 
 **`kind` is decided by path, not by content.** A file cannot promote itself into authority by
 declaring `kind: standard` in its own front matter. Path is the boundary; promotion moves files.
+
+**Reserved files under `standards/` are not standards.** A leading underscore marks a policy
+document that governs the directory rather than an entry inside it. `standards/_PROMOTION.md` states
+the bar an entry must clear before it may live there, and it is currently the only file in that
+directory. Projecting it as `Kind::Standard` would feed the rule that guards the authority boundary
+into context as normative content, which inverts the thing the boundary exists to do.
+
+The reader skips any basename starting with `_`, in every directory, and the skip is asserted:
+a fixture places `standards/_PROMOTION.md` alongside a real standard and checks that `list` returns
+the standard and never the policy file. The same rule covers `README.md` and generated `INDEX.md`,
+which describe a directory rather than asserting anything about the estate.
+
+**Why `revision` is not the commit SHA.** The blueprint declares `KnowledgeItem.revision: u64` and
+requires immutable provenance. A git commit hash is 160 bits and cannot be stored in a `u64` without
+truncation, and a truncated hash is not provenance. So the hash is carried whole in a new
+fixed-string `commit` field, and `revision` holds commit depth — genuinely monotonic, meaningful for
+ordering two snapshots of the same repo, and already a `u64`.
+
+This adds a field to the published struct, so it needs sign-off rather than assumption. The
+alternative is to retype `revision` as a string and record the disagreement in `docs/DELTA.md`.
+Adding a field is the smaller change: it leaves the declared type and meaning of an existing field
+alone, where retyping would change what every other `KnowledgeStore` implementation returns.
 
 **Open question — scope.** `Scope` needs to answer *"does DOM-0001 apply to this repo?"*. The KB is
 estate-wide but several entries are client-specific (`DOM-0004` is Unicommerce facility routing;
