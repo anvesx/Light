@@ -22,6 +22,19 @@ fn names(files: &[SourceFile]) -> Vec<String> {
     out
 }
 
+/// `names` alone cannot catch a branch that finds the symbol but counts its parameters wrong,
+/// which is the failure mode when a grammar moves the `parameters` field to a different node.
+fn names_with_arity(files: &[SourceFile]) -> Vec<(String, u64)> {
+    let map = build_repo_map(files).expect("repo map");
+    let mut out: Vec<(String, u64)> = map
+        .symbols
+        .iter()
+        .map(|s| (s.name.clone(), s.arity))
+        .collect();
+    out.sort();
+    out
+}
+
 #[test]
 fn finds_plain_function_declarations() {
     let f = file(
@@ -89,4 +102,36 @@ fn records_call_edges_between_typescript_symbols() {
     );
     let map = build_repo_map(&[f]).expect("repo map");
     assert!(!map.edges.is_empty(), "expected at least one call edge");
+}
+
+#[test]
+fn finds_generator_function_declarations() {
+    // `ts_definition` advertises `generator_function_declaration` in the same match arm as
+    // `function_declaration`, but tree-sitter gives it a distinct node kind. Without this
+    // fixture, dropping that kind from the arm leaves every other assertion in this file green.
+    let f = file(
+        "a.ts",
+        Language::TypeScript,
+        "export function* paginate(cursor: string, size: number) { yield cursor; }\n",
+    );
+    assert_eq!(names_with_arity(&[f]), vec![("paginate".to_string(), 2)]);
+}
+
+#[test]
+fn finds_class_public_field_arrow_functions() {
+    // `public_field_definition` shares an arm with `variable_declarator`: the name is on the
+    // field node and the parameters are on the value. It is the class-bound form of the
+    // arrow-const above, and nothing else in this file exercises it.
+    let f = file(
+        "a.ts",
+        Language::TypeScript,
+        "class Checkout {\n\
+         \x20 applyDiscount = (code: string, cart: Cart) => cart;\n\
+         \x20 reset = () => {};\n\
+         }\n",
+    );
+    assert_eq!(
+        names_with_arity(&[f]),
+        vec![("applyDiscount".to_string(), 2), ("reset".to_string(), 0)]
+    );
 }
