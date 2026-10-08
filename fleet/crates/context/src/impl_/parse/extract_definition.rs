@@ -4,6 +4,7 @@
 use super::super::error::ContextError;
 use super::super::parse::extract::node_text;
 use super::super::types::Language;
+use super::extract_definition_ts::ts_definition;
 use tree_sitter::Node;
 
 pub fn definition(
@@ -12,10 +13,16 @@ pub fn definition(
     language: Language,
 ) -> Result<Option<(String, u64)>, ContextError> {
     let kind = node.kind();
+    // TypeScript has several definition shapes and its dominant one carries no `name` field,
+    // so it cannot share the generic name/arity read below. See `extract_definition_ts`.
+    if matches!(language, Language::TypeScript | Language::Tsx) {
+        return ts_definition(node, source);
+    }
     let is_definition = match language {
         Language::Rust => kind == "function_item",
         Language::Python => kind == "function_definition",
         Language::Bash => kind == "function_definition",
+        Language::TypeScript | Language::Tsx => unreachable!("handled above"),
     };
     if !is_definition {
         return Ok(None);

@@ -10,12 +10,17 @@ pub struct SourceFile {
     pub source: String,
 }
 
-/// The three languages this crate's tree-sitter grammars cover today.
+/// The languages this crate's tree-sitter grammars cover today. `TypeScript` and `Tsx` are
+/// separate because tree-sitter ships two grammars: `.tsx` cannot be parsed by the plain
+/// TypeScript grammar (JSX conflicts with type assertions), and 248 of the POSX storefront's
+/// 458 source files are `.tsx`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd)]
 pub enum Language {
     Rust,
     Python,
     Bash,
+    TypeScript,
+    Tsx,
 }
 
 /// A stable identifier for one symbol, derived deterministically from `(path, name, arity)`.

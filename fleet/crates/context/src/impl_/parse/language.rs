@@ -8,6 +8,11 @@ pub fn language_for(path: &Path) -> Option<Language> {
         Some("rs") => Some(Language::Rust),
         Some("sh") | Some("bash") => Some(Language::Bash),
         Some("py") => Some(Language::Python),
+        // `.js`/`.mjs`/`.cjs` parse cleanly under the TypeScript grammar, which is a superset.
+        Some("ts") | Some("mts") | Some("cts") | Some("js") | Some("mjs") | Some("cjs") => {
+            Some(Language::TypeScript)
+        }
+        Some("tsx") | Some("jsx") => Some(Language::Tsx),
         _ => None,
     }
 }
@@ -22,5 +27,17 @@ mod tests {
         assert_eq!(language_for(Path::new("a.py")), Some(Language::Python));
         assert_eq!(language_for(Path::new("a.sh")), Some(Language::Bash));
         assert_eq!(language_for(Path::new("a.txt")), None);
+    }
+
+    #[test]
+    fn maps_typescript_and_tsx() {
+        for ext in ["ts", "mts", "cts", "js", "mjs", "cjs"] {
+            let path = format!("a.{ext}");
+            assert_eq!(language_for(Path::new(&path)), Some(Language::TypeScript));
+        }
+        for ext in ["tsx", "jsx"] {
+            let path = format!("a.{ext}");
+            assert_eq!(language_for(Path::new(&path)), Some(Language::Tsx));
+        }
     }
 }
