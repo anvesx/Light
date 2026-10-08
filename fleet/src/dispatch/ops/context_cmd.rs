@@ -5,6 +5,7 @@
 //! files off disk (a real, named IO touch this outermost layer is allowed -- BLUEPRINT §4).
 
 use crate::dispatch::error::DispatchError;
+use crate::dispatch::context_impact::{callers, Caller};
 use crate::dispatch::walk::read_source_files_bounded;
 use cli::args_ctx::{GraphArgs, ImpactArgs};
 use context::build_repo_map;
@@ -38,19 +39,30 @@ pub fn graph(args: GraphArgs) -> Result<(), DispatchError> {
 
 #[derive(serde::Serialize)]
 struct ImpactReport {
+    /// Kept for compatibility: anything parsing today's JSON keeps working.
     matching_symbols: usize,
+    /// New: the functions that call them. Not call locations -- see `context_impact`.
+    callers: Vec<Caller>,
 }
 
 pub fn impact(args: ImpactArgs) -> Result<(), DispatchError> {
     let files = read_source_files_bounded(Path::new(&args.repo))?;
     let map = build_repo_map(&files).map_err(|e| DispatchError::Refusal(e.to_string()))?;
     let hits = map.symbols.iter().filter(|s| s.name == args.symbol).count();
+    let found = callers(&map, &args.symbol);
     if args.json {
         print::json::print_pretty(&ImpactReport {
             matching_symbols: hits,
+            callers: found,
         });
     } else {
         human::line("matching_symbols", hits);
+        human::line("callers", found.len());
+        for caller in &found {
+            // `human::line` renders `label: value`; the name is the label so the file:line
+            // lands in the value column and the list stays greppable.
+            human::line(&caller.name, format!("{}:{}", caller.path, caller.line));
+        }
     }
     Ok(())
 }

@@ -18,6 +18,9 @@ pub mod agents_cmd;
 pub mod capacity_probe_cmd;
 #[path = "ops/context_cmd.rs"]
 pub mod context_cmd;
+// `fleet impact`'s call-site resolution, split out of `context_cmd` for its 80-line gate
+#[path = "ops/context_impact.rs"]
+mod context_impact;
 #[path = "ops/doctor_json.rs"]
 mod doctor_json;
 #[path = "ops/doctor_optional.rs"]
