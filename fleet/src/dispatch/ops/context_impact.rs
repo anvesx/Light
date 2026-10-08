@@ -38,8 +38,7 @@ pub fn callers(map: &RepoMap, symbol: &str) -> Vec<Caller> {
         return Vec::new();
     }
     // An edge is two opaque ids; this index turns a caller id back into its name, file and line.
-    let by_id: HashMap<&SymbolId, &SymbolRef> =
-        map.symbols.iter().map(|s| (&s.id, s)).collect();
+    let by_id: HashMap<&SymbolId, &SymbolRef> = map.symbols.iter().map(|s| (&s.id, s)).collect();
 
     let mut found: Vec<Caller> = map
         .edges
@@ -57,7 +56,11 @@ pub fn callers(map: &RepoMap, symbol: &str) -> Vec<Caller> {
         .collect();
 
     found.sort_by(|a, b| (&a.path, a.line, &a.name).cmp(&(&b.path, b.line, &b.name)));
-    // A function that calls the target three times is still one function to review.
-    found.dedup_by(|a, b| a.path == b.path && a.name == b.name);
+    // A function that calls the target three times is still one function to review. The key must
+    // carry `line`: a function's identity here is (file, line), not (file, name). Two different
+    // functions can share a name in one file -- a TypeScript overload pair, a Python redefinition --
+    // and keying on name alone silently drops one of them from the report. `SymbolId` does not help,
+    // because it is derived from (path, name, arity) and carries no line either.
+    found.dedup_by(|a, b| a.path == b.path && a.line == b.line && a.name == b.name);
     found
 }

@@ -114,3 +114,45 @@ fn an_unknown_symbol_reports_nothing_rather_than_failing() {
     assert_eq!(report["matching_symbols"], 0);
     assert_eq!(report["callers"].as_array().unwrap().len(), 0);
 }
+
+/// Two *different* functions that share a name in one file, both calling the target. Python
+/// allows the redefinition outright; a TypeScript overload pair has the same shape. They differ
+/// in arity, which is what gives them distinct `SymbolId`s -- `SymbolId` is derived from
+/// `(path, name, arity)` and carries no line, so a same-arity pair would already be one symbol
+/// before `callers` ever runs. This is the narrowest fixture that reaches the dedup.
+const SAME_NAME_FIXTURE: &str = r#"
+def helper(x):
+    return x
+
+def process(a):
+    return helper(a)
+
+def process(a, b):
+    return helper(a) + helper(b)
+"#;
+
+fn same_name_dir() -> tempfile::TempDir {
+    let dir = tempfile::tempdir().unwrap();
+    std::fs::write(dir.path().join("mod.py"), SAME_NAME_FIXTURE).unwrap();
+    dir
+}
+
+#[test]
+fn two_same_named_callers_in_one_file_are_both_reported() {
+    // Deduping on `(path, name)` alone silently drops one of these: they agree on file and name
+    // and differ only in the line that the sort above already orders on.
+    let dir = same_name_dir();
+    let report = impact_json(dir.path(), "helper");
+    let found = report["callers"].as_array().expect("callers array");
+    let lines: Vec<u64> = found.iter().map(|c| c["line"].as_u64().unwrap()).collect();
+    assert_eq!(
+        found.len(),
+        2,
+        "both `process` definitions call `helper`; got lines {lines:?}"
+    );
+    assert_eq!(
+        lines.len(),
+        lines.iter().collect::<std::collections::HashSet<_>>().len(),
+        "the two rows must be distinct definitions, not one row twice"
+    );
+}
