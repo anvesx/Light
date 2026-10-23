@@ -10,6 +10,7 @@ verifies it, and hands back a signed receipt. One independent monorepo root (dec
 |---|---|---|
 | **Orb** | `orb/` | React Native voice companion. On-device STT/TTS, a cheap-LLM crew that only fills language (never decides state), and a build-mode session that ends in a stamped **Freeze**. |
 | **Fleet** | `fleet/` | Local macOS CLI build engine. Turns a Freeze into a SOW, runs the worker, freezes the git diff, writes a tamper-evident receipt. |
+| **Company OS** | `company-os/` | Python agent harness for company agents. Its own agent loop and a 4-hook plugin contract; a control plane with checks before each run and each tool, roles enforced on data, approvals, triggers and a cost ledger; finance and meeting prep agents on dummy data. |
 | **Handoff** | `docs/lane-contracts/F09-orb-fleet-handoff.md` | The only contract between the two: a keel-stamped `Freeze` (`lld.v1` file, on disk). Keel — Fleet's gate — is the sole writer of `stamped_by`; Orb's Python never stamps. |
 
 ## HLD
@@ -41,6 +42,7 @@ Light/
 ├── apps/macos/          macOS host — copied from adhd-focus-orb/macos/OrbMac
 ├── fleet/               build engine — copied from fleet-rs/
 │   └── registry-reference/  shell-script reference for Light/fleet's /task workflow shape
+├── company-os/          agent harness — copied from anvesx/company-os (S3)
 ├── registry/{features,services,modules}/  scaffold, populated by extraction as features land
 ├── FEATURES.md          atomic feature list, ordered by time-to-visible-output
 ├── STATUS.md            generated — do not hand-edit (status/render.sh)
@@ -58,6 +60,7 @@ has one coherent repo to branch from.
 ```sh
 cd orb && npm install && npm run verify   # boundary-lint + typecheck + TS/Python/Rust tests
 cd fleet && ./install.sh && fleet status  # builds + installs the Rust CLI
+cd company-os && python3 -m unittest discover -s tests -t . && python3 -m evaluation.run_all_exams  # 483 tests + 10 exams
 ```
 
 ## Reading order

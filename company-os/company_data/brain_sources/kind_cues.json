@@ -1,0 +1,33 @@
+{
+  "decision": [
+    "we decided",
+    "let's go with"
+  ],
+  "requirement": [
+    "we need",
+    "must have"
+  ],
+  "blocker": [
+    "blocked",
+    "waiting for"
+  ],
+  "commitment": [
+    "will send by"
+  ],
+  "question": [
+    "?"
+  ],
+  "risk": [
+    "risk"
+  ],
+  "money": [
+    "inr"
+  ],
+  "sentiment": [
+    "happy",
+    "unhappy",
+    "frustrated",
+    "worried"
+  ],
+  "fact": []
+}

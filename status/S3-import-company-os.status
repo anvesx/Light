@@ -1,0 +1,7 @@
+ID=S3
+FEATURE=Step 3 — copy company-os (Python agent harness) into Light/company-os
+REPO=company-os
+STATUS=done
+AGENT=Pratham (with Claude)
+SINCE=2026-10-23 10:49 IST
+NOTE=326 files copied with git ls-files from anvesx/company-os @ ed8eea6; 483 tests and 10 exams pass unchanged; see docs/evidence/S3-import-company-os.md

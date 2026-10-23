@@ -1,0 +1,109 @@
+{
+  "recording_id": 8800001,
+  "title": "Growth call: MedBridge patient app",
+  "created_at": "2026-05-22T05:00:00Z",
+  "calendar_invitees": [
+    {
+      "name": "Anthony Fernandes",
+      "email": "anthony.fernandes@devx-demo.example"
+    },
+    {
+      "name": "Nandini Sethi",
+      "email": "nandini.sethi@medbridge-clinics.example"
+    },
+    {
+      "name": "Paul Fernandes",
+      "email": "paul.fernandes@medbridge-clinics.example"
+    }
+  ],
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Hello Nandini ji, aap sun pa rahe ho? Audio thik hai?",
+      "timestamp": "00:00:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Haan haan, clear hai. Toh Anthony, hum chahte hain ki patients apne phone se appointment book kar sakein, matlab call na karna pade.",
+      "timestamp": "00:00:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Bilkul, makes sense. Aur abhi kitne clinics hain aapke?",
+      "timestamp": "00:00:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Paanch clinics hain Pune mein. Aur doctors ki availability bhi app mein dikhni chahiye, uh, live.",
+      "timestamp": "00:00:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Paul Fernandes",
+        "matched_calendar_invitee_email": "paul.fernandes@medbridge-clinics.example"
+      },
+      "text": "Sorry beech mein, you know, payment bhi online hona chahiye, UPI se.",
+      "timestamp": "00:00:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Haan, noted. Aapke mind mein koi launch date hai?",
+      "timestamp": "00:01:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Matlab Diwali se pehle, November ke pehle hafte tak. Hum chahte hain ki tab tak sab ready ho.",
+      "timestamp": "00:01:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Thik hai. Toh ek paid pilot ek clinic mein pehle chalate hain, phir baaki chaar mein.",
+      "timestamp": "00:01:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Ji, yeh theek rahega. Budget humne pachaas lakh tak rakha hai.",
+      "timestamp": "00:01:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Great. Hum kal tak price ka quote bhej denge.",
+      "timestamp": "00:01:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Haan, achha hai. Thanks Anthony.",
+      "timestamp": "00:01:56"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "recording_id": 8800010,
+  "title": "Growth call: KiranaKart app",
+  "created_at": "2026-06-22T05:30:00Z",
+  "calendar_invitees": [
+    {
+      "name": "Siddharth Rao",
+      "email": "siddharth.rao@devx-demo.example"
+    },
+    {
+      "name": "Vivek Chandra",
+      "email": "vivek.chandra@kiranakart.example"
+    }
+  ],
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Siddharth Rao",
+        "matched_calendar_invitee_email": "siddharth.rao@devx-demo.example"
+      },
+      "text": "Hi Vivek, great to meet you.",
+      "timestamp": "00:00:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Vivek Chandra",
+        "matched_calendar_invitee_email": "vivek.chandra@kiranakart.example"
+      },
+      "text": "Haan Siddharth. Humein neighbourhood kirana shops ke liye ek app chahiye, home delivery ke saath, simple sa.",
+      "timestamp": "00:00:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Siddharth Rao",
+        "matched_calendar_invitee_email": "siddharth.rao@devx-demo.example"
+      },
+      "text": "Samajh gaya. Shops ke stock ka kya, wo bhi app mein?",
+      "timestamp": "00:00:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Vivek Chandra",
+        "matched_calendar_invitee_email": "vivek.chandra@kiranakart.example"
+      },
+      "text": "Haan woh bhi dikhna chahiye. Hum chahte hain ki jaldi launch ho, you know, market mein competition hai.",
+      "timestamp": "00:00:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Siddharth Rao",
+        "matched_calendar_invitee_email": "siddharth.rao@devx-demo.example"
+      },
+      "text": "Theek hai, hum ek plan banake bhejte hain.",
+      "timestamp": "00:00:41"
+    }
+  ]
+}

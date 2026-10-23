@@ -1,0 +1,25 @@
+# Local material, kept out of the shared repo
+market_simulation/
+
+# Generated or local files
+__pycache__/
+*.pyc
+*.log
+*.tmp
+*.db
+*.db-journal
+*.sqlite
+web_console/state/
+.DS_Store
+node_modules/
+.env
+
+# Local experiments (web console), kept out of the shared repo
+web_console/
+experiments/web_console_v1/
+evaluation/browser_check/
+tests/console_stub.py
+tests/test_web_console.py
+tests/test_console_plugins.py
+tests/test_*_routes.py
+experiments/tests/test_web_console_*.py

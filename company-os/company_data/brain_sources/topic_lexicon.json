@@ -1,0 +1,474 @@
+{
+  "topics": {
+    "reminders": {
+      "label": "Reminders",
+      "en": [
+        "reminder",
+        "reminders",
+        "remind",
+        "notification",
+        "notifications",
+        "whatsapp",
+        "sms"
+      ],
+      "hinglish": [
+        "reminder",
+        "yaad",
+        "whatsapp",
+        "sms"
+      ],
+      "hi": [
+        "रिमाइंडर",
+        "याद"
+      ]
+    },
+    "insurance-claims": {
+      "label": "Insurance claims",
+      "en": [
+        "insurance",
+        "claim",
+        "claims",
+        "insurer"
+      ],
+      "hinglish": [
+        "insurance",
+        "claim",
+        "bima"
+      ],
+      "hi": [
+        "बीमा",
+        "क्लेम"
+      ]
+    },
+    "payments": {
+      "label": "Payments",
+      "en": [
+        "payment",
+        "payments",
+        "upi",
+        "gateway"
+      ],
+      "hinglish": [
+        "payment",
+        "paise",
+        "bhugtan"
+      ],
+      "hi": [
+        "भुगतान",
+        "पेमेंट"
+      ]
+    },
+    "launch-date": {
+      "label": "Launch date",
+      "en": [
+        "launch",
+        "golive"
+      ],
+      "hinglish": [
+        "launch",
+        "golive"
+      ],
+      "hi": [
+        "लॉन्च"
+      ]
+    },
+    "timeline": {
+      "label": "Timeline",
+      "en": [
+        "timeline",
+        "weeks",
+        "months",
+        "schedule",
+        "duration"
+      ],
+      "hinglish": [
+        "timeline",
+        "hafte",
+        "mahine",
+        "samay"
+      ],
+      "hi": [
+        "समय",
+        "हफ्ते",
+        "महीने"
+      ]
+    },
+    "budget": {
+      "label": "Budget",
+      "en": [
+        "budget",
+        "funds"
+      ],
+      "hinglish": [
+        "budget",
+        "bajet"
+      ],
+      "hi": [
+        "बजट"
+      ]
+    },
+    "pricing": {
+      "label": "Pricing",
+      "en": [
+        "price",
+        "prices",
+        "pricing",
+        "cost",
+        "costs",
+        "expensive",
+        "quote",
+        "discount"
+      ],
+      "hinglish": [
+        "price",
+        "rate",
+        "mehenga",
+        "mahanga",
+        "kimat"
+      ],
+      "hi": [
+        "कीमत",
+        "महंगा"
+      ]
+    },
+    "data-residency": {
+      "label": "Data residency",
+      "en": [
+        "residency",
+        "stored",
+        "storage",
+        "servers",
+        "hosted",
+        "hosting"
+      ],
+      "hinglish": [
+        "storage",
+        "server",
+        "servers",
+        "hosting"
+      ],
+      "hi": [
+        "डेटा",
+        "सर्वर"
+      ]
+    },
+    "language-support": {
+      "label": "Language support",
+      "en": [
+        "hindi",
+        "marathi",
+        "language",
+        "languages",
+        "regional",
+        "bilingual"
+      ],
+      "hinglish": [
+        "hindi",
+        "marathi",
+        "bhasha",
+        "language"
+      ],
+      "hi": [
+        "हिंदी",
+        "मराठी",
+        "भाषा"
+      ]
+    },
+    "lab-integration": {
+      "label": "Lab integration",
+      "en": [
+        "lab",
+        "labs",
+        "lis",
+        "diagnostic",
+        "diagnostics",
+        "samples"
+      ],
+      "hinglish": [
+        "lab",
+        "lis",
+        "sample"
+      ],
+      "hi": [
+        "लैब"
+      ]
+    },
+    "offline-mode": {
+      "label": "Offline mode",
+      "en": [
+        "offline",
+        "internet",
+        "connectivity",
+        "outage"
+      ],
+      "hinglish": [
+        "offline",
+        "internet",
+        "net",
+        "connectivity"
+      ],
+      "hi": [
+        "ऑफलाइन",
+        "इंटरनेट"
+      ]
+    },
+    "gst-invoicing": {
+      "label": "GST invoicing",
+      "en": [
+        "gst",
+        "invoice",
+        "invoices",
+        "tax",
+        "hsn"
+      ],
+      "hinglish": [
+        "gst",
+        "invoice",
+        "tax"
+      ],
+      "hi": [
+        "जीएसटी",
+        "इनवॉइस"
+      ]
+    },
+    "gift-vouchers": {
+      "label": "Gift vouchers",
+      "en": [
+        "voucher",
+        "vouchers",
+        "gift",
+        "coupon",
+        "coupons"
+      ],
+      "hinglish": [
+        "voucher",
+        "gift",
+        "coupon"
+      ],
+      "hi": [
+        "वाउचर",
+        "गिफ्ट"
+      ]
+    },
+    "inventory-sync": {
+      "label": "Inventory sync",
+      "en": [
+        "inventory",
+        "stock",
+        "stocks",
+        "replenishment"
+      ],
+      "hinglish": [
+        "stock",
+        "inventory"
+      ],
+      "hi": [
+        "स्टॉक",
+        "इन्वेंटरी"
+      ]
+    },
+    "access-credentials": {
+      "label": "Access and credentials",
+      "en": [
+        "credentials",
+        "access",
+        "login",
+        "password",
+        "sandbox",
+        "keys"
+      ],
+      "hinglish": [
+        "access",
+        "login",
+        "password",
+        "credentials"
+      ],
+      "hi": [
+        "एक्सेस",
+        "पासवर्ड",
+        "लॉगिन"
+      ]
+    },
+    "reporting": {
+      "label": "Reporting",
+      "en": [
+        "reporting",
+        "dashboard",
+        "dashboards",
+        "analytics",
+        "mis",
+        "reports"
+      ],
+      "hinglish": [
+        "dashboard",
+        "report",
+        "reporting",
+        "mis"
+      ],
+      "hi": [
+        "रिपोर्ट",
+        "डैशबोर्ड"
+      ]
+    },
+    "pilot": {
+      "label": "Pilot",
+      "en": [
+        "pilot",
+        "trial"
+      ],
+      "hinglish": [
+        "pilot",
+        "trial",
+        "pehle"
+      ],
+      "hi": [
+        "पायलट",
+        "ट्रायल"
+      ]
+    },
+    "support-sla": {
+      "label": "Support and SLA",
+      "en": [
+        "sla",
+        "support",
+        "uptime",
+        "escalation",
+        "helpdesk"
+      ],
+      "hinglish": [
+        "support",
+        "sla",
+        "uptime"
+      ],
+      "hi": [
+        "सपोर्ट",
+        "एसएलए"
+      ]
+    },
+    "training": {
+      "label": "Training",
+      "en": [
+        "training",
+        "trained",
+        "onboarding",
+        "workshop"
+      ],
+      "hinglish": [
+        "training",
+        "onboarding",
+        "trained"
+      ],
+      "hi": [
+        "ट्रेनिंग",
+        "प्रशिक्षण"
+      ]
+    },
+    "compliance": {
+      "label": "Compliance",
+      "en": [
+        "compliance",
+        "regulation",
+        "audit",
+        "dpdp",
+        "consent",
+        "privacy"
+      ],
+      "hinglish": [
+        "compliance",
+        "audit",
+        "consent",
+        "privacy",
+        "dpdp"
+      ],
+      "hi": [
+        "अनुपालन",
+        "कंप्लायंस"
+      ]
+    },
+    "phased-mvp": {
+      "label": "Phased MVP",
+      "en": [
+        "phased",
+        "mvp"
+      ],
+      "hinglish": [
+        "phased",
+        "mvp"
+      ],
+      "hi": [
+        "एमवीपी",
+        "चरण"
+      ]
+    },
+    "appointments": {
+      "label": "Appointments",
+      "en": [
+        "appointment",
+        "appointments",
+        "booking",
+        "bookings",
+        "slots"
+      ],
+      "hinglish": [
+        "appointment",
+        "booking",
+        "slot"
+      ],
+      "hi": [
+        "अपॉइंटमेंट",
+        "बुकिंग"
+      ]
+    },
+    "loyalty": {
+      "label": "Loyalty",
+      "en": [
+        "loyalty",
+        "rewards",
+        "membership"
+      ],
+      "hinglish": [
+        "loyalty",
+        "reward"
+      ],
+      "hi": [
+        "लॉयल्टी"
+      ]
+    },
+    "aggregator-integration": {
+      "label": "Delivery aggregators",
+      "en": [
+        "aggregator",
+        "aggregators",
+        "delivery"
+      ],
+      "hinglish": [
+        "aggregator",
+        "delivery",
+        "orders"
+      ],
+      "hi": [
+        "डिलीवरी"
+      ]
+    },
+    "outlet-rollout": {
+      "label": "Outlet rollout",
+      "en": [
+        "outlet",
+        "outlets",
+        "rollout",
+        "branch",
+        "branches"
+      ],
+      "hinglish": [
+        "outlet",
+        "outlets",
+        "rollout",
+        "branch"
+      ],
+      "hi": [
+        "आउटलेट",
+        "शाखा"
+      ]
+    }
+  }
+}

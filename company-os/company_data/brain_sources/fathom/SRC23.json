@@ -1,0 +1,61 @@
+{
+  "recording_id": 8800023,
+  "title": "Call 2: Zaika plan for two outlets",
+  "created_at": "2026-10-06T09:00:00Z",
+  "calendar_invitees": [
+    {
+      "name": "Anthony Fernandes",
+      "email": "anthony.fernandes@devx-demo.example"
+    },
+    {
+      "name": "Farida Merchant",
+      "email": "farida.merchant@zaika-foods.example"
+    },
+    {
+      "name": "Dhruv Malhotra",
+      "email": "dhruv.malhotra@zaika-foods.example"
+    }
+  ],
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Let me show the plan for the first two sites.",
+      "timestamp": "00:00:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Dhruv Malhotra",
+        "matched_calendar_invitee_email": "dhruv.malhotra@zaika-foods.example"
+      },
+      "text": "Achha lag raha hai. Budget humne chaudah lakh rakha hai, isse zyada nahi.",
+      "timestamp": "00:00:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Farida Merchant",
+        "matched_calendar_invitee_email": "farida.merchant@zaika-foods.example"
+      },
+      "text": "Aur hum chahte hain ki har shop ka stock ek saath update ho.",
+      "timestamp": "00:00:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Dhruv Malhotra",
+        "matched_calendar_invitee_email": "dhruv.malhotra@zaika-foods.example"
+      },
+      "text": "Timeline lamba hua toh hum worried honge, you know, humein jaldi results chahiye.",
+      "timestamp": "00:00:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Hum let's go with do shops ka pilot pehle.",
+      "timestamp": "00:00:42"
+    }
+  ]
+}

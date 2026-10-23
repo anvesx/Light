@@ -1,0 +1,73 @@
+{
+  "recording_id": 8800022,
+  "title": "Growth call: Zaika Foods billing",
+  "created_at": "2026-09-15T06:30:00Z",
+  "calendar_invitees": [
+    {
+      "name": "Anthony Fernandes",
+      "email": "anthony.fernandes@devx-demo.example"
+    },
+    {
+      "name": "Farida Merchant",
+      "email": "farida.merchant@zaika-foods.example"
+    }
+  ],
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Hi Farida, thanks for joining.",
+      "timestamp": "00:00:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Farida Merchant",
+        "matched_calendar_invitee_email": "farida.merchant@zaika-foods.example"
+      },
+      "text": "Haan Anthony. Humare nau outlets hain aur har outlet ka billing alag chalta hai, ek system chahiye.",
+      "timestamp": "00:00:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Samajh gaya. Online orders ka kya, delivery apps se?",
+      "timestamp": "00:00:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Farida Merchant",
+        "matched_calendar_invitee_email": "farida.merchant@zaika-foods.example"
+      },
+      "text": "Haan, un sab ke orders ek jagah aane chahiye. Hum chahte hain ki sab aggregators ek screen pe aayein.",
+      "timestamp": "00:00:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Farida Merchant",
+        "matched_calendar_invitee_email": "farida.merchant@zaika-foods.example"
+      },
+      "text": "Aur ek cheez, woh jo hamare kitchen wale bhaiya bolte hain na, 'thandi pad jaati hai', uska kuch karo.",
+      "timestamp": "00:00:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Anthony Fernandes",
+        "matched_calendar_invitee_email": "anthony.fernandes@devx-demo.example"
+      },
+      "text": "Noted. Loyalty points ka bhi koi plan hai?",
+      "timestamp": "00:00:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Farida Merchant",
+        "matched_calendar_invitee_email": "farida.merchant@zaika-foods.example"
+      },
+      "text": "Haan, but phase two mein. Pehle billing.",
+      "timestamp": "00:01:09"
+    }
+  ]
+}

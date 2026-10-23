@@ -1,0 +1,19 @@
+{
+  "economy_only_under_hours": 2.5,
+  "depart_window": {
+    "from": "06:00",
+    "to": "21:00"
+  },
+  "hotel_rate_rule": "at or under the city rate (company_data.generate_trips.POLICY_RATE)",
+  "show_top": 3,
+  "max_pax": 9,
+  "people_per_room": 2,
+  "rank_order": [
+    "policy_ok",
+    "cheapest"
+  ],
+  "late_booking_days": 3,
+  "earlier_fare_min_saving_share": 0.3,
+  "same_city_days": 7,
+  "hotel_over_city_rate_share": 0.1
+}

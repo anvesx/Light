@@ -1,0 +1,252 @@
+{
+  "sources": [
+    {
+      "origin_ref": "SRC01",
+      "kind": "fathom",
+      "file": "fathom/SRC01.json",
+      "arrives_at": "2026-05-22T11:30",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC02",
+      "kind": "fathom",
+      "file": "fathom/SRC02.json",
+      "arrives_at": "2026-05-25T16:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC03",
+      "kind": "email",
+      "file": "email/SRC03.eml",
+      "arrives_at": "2026-05-27T11:20",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC04",
+      "kind": "fathom",
+      "file": "fathom/SRC04.json",
+      "arrives_at": "2026-04-17T15:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC05",
+      "kind": "fathom",
+      "file": "fathom/SRC05.json",
+      "arrives_at": "2026-04-20T12:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC06",
+      "kind": "docx",
+      "file": "docx/SRC06.docx",
+      "arrives_at": "2026-04-21T09:30",
+      "hint_area": "C01",
+      "history": true
+    },
+    {
+      "origin_ref": "SRC07",
+      "kind": "fathom",
+      "file": "fathom/SRC07.json",
+      "arrives_at": "2026-07-13T13:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC08",
+      "kind": "fathom",
+      "file": "fathom/SRC08.json",
+      "arrives_at": "2026-08-03T16:30",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC09",
+      "kind": "email",
+      "file": "email/SRC09.eml",
+      "arrives_at": "2026-08-10T10:05",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC10",
+      "kind": "fathom",
+      "file": "fathom/SRC10.json",
+      "arrives_at": "2026-06-22T12:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC11",
+      "kind": "fathom",
+      "file": "fathom/SRC11.json",
+      "arrives_at": "2026-07-20T17:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC12",
+      "kind": "docx",
+      "file": "docx/SRC12.docx",
+      "arrives_at": "2026-07-22T09:00",
+      "hint_area": "C10",
+      "history": true
+    },
+    {
+      "origin_ref": "SRC13",
+      "kind": "fathom",
+      "file": "fathom/SRC13.json",
+      "arrives_at": "2026-07-14T17:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC14",
+      "kind": "fathom",
+      "file": "fathom/SRC14.json",
+      "arrives_at": "2026-08-11T17:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC15",
+      "kind": "docx",
+      "file": "docx/SRC15.docx",
+      "arrives_at": "2026-08-25T17:30",
+      "hint_area": "C04",
+      "history": true
+    },
+    {
+      "origin_ref": "SRC16",
+      "kind": "fathom",
+      "file": "fathom/SRC16.json",
+      "arrives_at": "2026-06-24T16:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC17",
+      "kind": "fathom",
+      "file": "fathom/SRC17.json",
+      "arrives_at": "2026-07-29T16:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC18",
+      "kind": "docx",
+      "file": "docx/SRC18.docx",
+      "arrives_at": "2026-09-02T17:00",
+      "hint_area": "C01",
+      "history": true
+    },
+    {
+      "origin_ref": "SRC19",
+      "kind": "fathom",
+      "file": "fathom/SRC19.json",
+      "arrives_at": "2026-08-31T12:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC20",
+      "kind": "fathom",
+      "file": "fathom/SRC20.json",
+      "arrives_at": "2026-09-22T16:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC21",
+      "kind": "docx",
+      "file": "docx/SRC21.docx",
+      "arrives_at": "2026-09-24T10:00",
+      "hint_area": "C07",
+      "history": true
+    },
+    {
+      "origin_ref": "SRC22",
+      "kind": "fathom",
+      "file": "fathom/SRC22.json",
+      "arrives_at": "2026-09-15T13:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC23",
+      "kind": "fathom",
+      "file": "fathom/SRC23.json",
+      "arrives_at": "2026-10-06T15:30",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC24",
+      "kind": "email",
+      "file": "email/SRC24.eml",
+      "arrives_at": "2026-10-07T10:30",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC25",
+      "kind": "fathom",
+      "file": "fathom/SRC25.json",
+      "arrives_at": "2026-09-30T12:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC26",
+      "kind": "fathom",
+      "file": "fathom/SRC26.json",
+      "arrives_at": "2026-10-07T17:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC27",
+      "kind": "fathom",
+      "file": "fathom/SRC27.json",
+      "arrives_at": "2026-10-10T13:00",
+      "hint_area": null,
+      "history": true
+    },
+    {
+      "origin_ref": "SRC28",
+      "kind": "chat",
+      "file": "chat/SRC28.txt",
+      "arrives_at": "2026-10-12T10:00",
+      "hint_area": "C04",
+      "history": true
+    },
+    {
+      "origin_ref": "SRC29",
+      "kind": "email",
+      "file": "email/SRC29.eml",
+      "arrives_at": "2026-10-19T09:40",
+      "hint_area": null,
+      "history": false
+    },
+    {
+      "origin_ref": "SRC30",
+      "kind": "fathom",
+      "file": "fathom/SRC30.json",
+      "arrives_at": "2026-10-20T09:15",
+      "hint_area": null,
+      "history": false
+    },
+    {
+      "origin_ref": "SRC31",
+      "kind": "fathom",
+      "file": "fathom/SRC31.json",
+      "arrives_at": "2026-10-19T10:40",
+      "hint_area": null,
+      "history": false
+    }
+  ]
+}

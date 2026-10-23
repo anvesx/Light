@@ -1,0 +1,145 @@
+{
+  "recording_id": 8800025,
+  "title": "Client sync: MedBridge booking app",
+  "created_at": "2026-09-30T05:30:00Z",
+  "calendar_invitees": [
+    {
+      "name": "Akbar Ali",
+      "email": "akbar.ali@devx-demo.example"
+    },
+    {
+      "name": "Meera Pillai",
+      "email": "meera.pillai@devx-demo.example"
+    },
+    {
+      "name": "Nandini Sethi",
+      "email": "nandini.sethi@medbridge-clinics.example"
+    },
+    {
+      "name": "Paul Fernandes",
+      "email": "paul.fernandes@medbridge-clinics.example"
+    }
+  ],
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Akbar Ali",
+        "matched_calendar_invitee_email": "akbar.ali@devx-demo.example"
+      },
+      "text": "Hi everyone, shall we begin? Nandini ji, aap sun rahe ho?",
+      "timestamp": "00:00:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Haan Akbar, bilkul. Pehle ek update, doctors ne beta app try kiya, feedback achha hai.",
+      "timestamp": "00:00:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Meera Pillai",
+        "matched_calendar_invitee_email": "meera.pillai@devx-demo.example"
+      },
+      "text": "Great. Next kya hum launch ki date finalize karein?",
+      "timestamp": "00:00:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Paul Fernandes",
+        "matched_calendar_invitee_email": "paul.fernandes@medbridge-clinics.example"
+      },
+      "text": "Hum chahte hain ki pehle clinic ka launch six November ko ho.",
+      "timestamp": "00:00:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Aur haan, Hindi screens abhi bhi baaki hain, woh to chahiye hi.",
+      "timestamp": "00:00:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Meera Pillai",
+        "matched_calendar_invitee_email": "meera.pillai@devx-demo.example"
+      },
+      "text": "Hindi ke liye translations aap bhejoge?",
+      "timestamp": "00:00:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Haan, hum bhej denge.",
+      "timestamp": "00:01:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Akbar Ali",
+        "matched_calendar_invitee_email": "akbar.ali@devx-demo.example"
+      },
+      "text": "Achha, ek aur cheez, insurance claim wala flow kaisa chal raha hai?",
+      "timestamp": "00:01:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Paul Fernandes",
+        "matched_calendar_invitee_email": "paul.fernandes@medbridge-clinics.example"
+      },
+      "text": "Wo theek hai, uh, test mein hai abhi.",
+      "timestamp": "00:01:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Meera Pillai",
+        "matched_calendar_invitee_email": "meera.pillai@devx-demo.example"
+      },
+      "text": "Aur reminders ka kya karna hai, matlab kaunsa channel?",
+      "timestamp": "00:01:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Matlab patients WhatsApp use karte hain zyada.",
+      "timestamp": "00:01:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Paul Fernandes",
+        "matched_calendar_invitee_email": "paul.fernandes@medbridge-clinics.example"
+      },
+      "text": "Haan, SMS toh koi dekhta hi nahi.",
+      "timestamp": "00:01:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Akbar Ali",
+        "matched_calendar_invitee_email": "akbar.ali@devx-demo.example"
+      },
+      "text": "Toh kya final karein?",
+      "timestamp": "00:01:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Nandini Sethi",
+        "matched_calendar_invitee_email": "nandini.sethi@medbridge-clinics.example"
+      },
+      "text": "Hum decide karte hain: WhatsApp se hi reminders jayenge.",
+      "timestamp": "00:02:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Akbar Ali",
+        "matched_calendar_invitee_email": "akbar.ali@devx-demo.example"
+      },
+      "text": "Done, note kar liya. Thanks everyone.",
+      "timestamp": "00:02:08"
+    }
+  ]
+}

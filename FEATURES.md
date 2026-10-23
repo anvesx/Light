@@ -10,8 +10,8 @@ first. Within a phase, items are further ordered by dependency (an item cannot p
 and, among independents, by which is smaller/faster. Phases P0→P4 are themselves already ordered this
 way in the source docs; this file decomposes each phase into buildable, one-lane-sized units.
 
-**One feature builds at a time per repo** (four repos: `orb`, `fleet`, `apps/macos`, `registry`) — so
-up to 4 lanes can be active concurrently, one per repo, each working its own queue below in order.
+**One feature builds at a time per repo** (five repos: `orb`, `fleet`, `apps/macos`, `registry`, `company-os`) — so
+up to 5 lanes can be active concurrently, one per repo, each working its own queue below in order.
 Cross-repo integration features (tagged `orb+fleet` etc.) wait for every repo they touch to reach that
 point in its own queue.
 
@@ -70,6 +70,7 @@ as "proved the concept client-side," F04 as "makes it real for the app that matt
 | # | What | Repo | Status |
 |---|---|---|---|
 | S1 | Copy `adhd-focus-orb`+`fleet-rs`+`OrbMac`+`fleet/registry` into `Light/`, reorganize to the D15 shape, fresh git history | Light (all) | ☑ |
+| S3 | Copy `company-os` (Python agent harness: own agent loop, plugin contract, control plane with guardrails and roles, approvals, cost ledger, finance and meeting prep agents) into `Light/company-os/`, unchanged inside; its own tests and exams pass in place | company-os | ☑ |
 | S0 | **Baseline gate check** — before any new feature lands, confirm each copied repo's *own, pre-existing* verify gate still passes unchanged in its new location (or fails identically to the original — a copy must not silently break or silently fix anything). Specifically re-check `illegal_lifecycle_transitions_do_not_compile` in `fleet/keel` (flagged possibly-red 2026-08-28, see note above) — in progress, `/tmp/f8-lifecycle-check.log` | orb, fleet, apps/macos | ◐ |
 
 ---
