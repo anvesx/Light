@@ -1,11 +1,14 @@
 # Claude Code: Company OS
 
-Read `README.md` for what this repo is, `TRACKER.md` for the current state, `PLAN_v2.md` for the design, and `PLAN_24x7.md` for the plan to run agents 24/7.
+This folder is `company-os/` inside the Light repo (`anvesx/Light`), on the branch `feat/company-os`. It was imported as S3: see `../status/S3-import-company-os.status` and `../docs/evidence/S3-import-company-os.md`. Run every command below from this folder.
+
+Read `README.md` for what Company OS is, `TRACKER.md` for the current state, `PLAN_v2.md` for the design, and `PLAN_24x7.md` for the plan to run agents 24/7.
 
 ## Keep the tracker current
 
 - After every change, update `TRACKER.md`: move items between "In progress", "Next" and "Done", and add every new decision with its date and reason.
-- Push the change to `origin main` (`anvesx/company-os`), so the repo always shows the current state.
+- Commit on `feat/company-os`. **Never push, and never open a PR, unless Pratham asks in that message.** Never push to `main`.
+- Follow Light's records too: keep `../status/` files current (then run `bash ../status/render.sh`; never edit `../STATUS.md` by hand), and add an evidence file in `../docs/evidence/` with real command output for each shipped piece.
 
 ## Rules for code
 
