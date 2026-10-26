@@ -1,7 +1,7 @@
 ID=S4
 FEATURE=Step 4: company-os agents restructured into agent folders, with a lessons file
 REPO=company-os
-STATUS=done
-AGENT=main session
+STATUS=verified
+AGENT=main session (re-ran 505 tests, 10 exams and three fake-model runs)
 SINCE=2026-10-26 16:10 IST
 NOTE=10 agents use one folder layout (agent.md, instructions.md, guardrails.md, memory.md, graph.json, experience.md); failed checks leave candidate lessons in the state dir; see docs/evidence/S4-agent-folders.md
