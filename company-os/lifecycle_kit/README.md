@@ -34,3 +34,21 @@ Packs read data in `record` and `understand` with `ctx.notes["invoke_tool"](name
 | `agent_pack.py` | Base class for an agent pack. A pack fills in the lifecycle steps; the runner calls them in order. |
 | `approved_actions.py` | Runs a risky call once, after a person approved it. Rejected, pending or already-run approvals do nothing. |
 | `lifecycle_runner.py` | Runs one task through the lifecycle: record, understand, decide, check, act, remember. |
+
+## Agent folder and lessons
+
+Each agent is one folder. `agent_folder.py` reads it, and `AgentPack.system_prompt()` builds the prompt from it:
+`instructions.md`, then the bullets of `guardrails.md`, then the newest 20 bullets of `experience.md` (approved lessons).
+The folder files are `agent.md` (frontmatter: name, description, family, tools, starter_roles, approver_roles, reads_library),
+`instructions.md`, `guardrails.md`, `memory.md`, `graph.json` and `experience.md`. `check_agent_folder(folder, name, pack)` lists the problems.
+A pack that sits in no agent folder gets an empty prompt unless it overrides `system_prompt()`.
+
+`lessons.py` records a candidate lesson for each problem of a failed `check` step. The log is `lesson_candidates.jsonl` in a data folder
+(`LifecycleRunner(runtime, lessons=LessonLog(dir))`; `build_company_os` uses `<state_dir>/lessons`). It is never in the source tree.
+A person promotes a candidate: `promote_candidate(log, id, "lesson text", agent_folder)`, or
+`COMPANY_OS_LESSONS_DIR=<dir> python3 -m lifecycle_kit.lessons list` and `... promote <id> "lesson text"`. The lesson is written by the person, not copied from the problem.
+
+| File | What it does |
+|---|---|
+| `agent_folder.py` | Reads an agent folder, builds the system prompt, checks the folder. |
+| `lessons.py` | Candidate lessons from failed checks, and promotion into `experience.md`. |

@@ -1,0 +1,29 @@
+{
+  "agent": "spend_advisor",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Read the trip totals, savings, verdicts and team breakdown for the question."
+    },
+    {
+      "step": "understand",
+      "does": "Code computes every number and the suggestions."
+    },
+    {
+      "step": "decide",
+      "does": "The model writes the plain letter from those numbers."
+    },
+    {
+      "step": "check",
+      "does": "Code checks every amount, percentage, date and trip id, and checks that no person is named."
+    },
+    {
+      "step": "act",
+      "does": "Send the letter to the person who asked."
+    },
+    {
+      "step": "remember",
+      "does": "Log what was sent."
+    }
+  ]
+}

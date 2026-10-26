@@ -1,7 +1,7 @@
 """Tests for the live listener: pure code checks on a line, with a small hand-made brain."""
 import unittest
 
-from agents.meeting_prep.live_copilot.listener import LiveListener, values_in
+from agents.meeting_prep.live_copilot.scripts.listener import LiveListener, values_in
 from control_plane.company_brain.topic_lexicon import load_lexicon
 
 DECISION = {"item_id": "I1", "kind": "decision", "topic": "reminders", "text": "We decided: the reminders will go by WhatsApp only.",

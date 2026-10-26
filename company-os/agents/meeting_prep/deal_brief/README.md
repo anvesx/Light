@@ -8,5 +8,20 @@ Prepares Growth for a live deal, for example C07 CareNest. Started by growth, ce
 
 **Tools.** `deal_overview` (own area), `similar_playbooks` and `kickoff_checklist` (library), in `control_plane/connectors/deal_brain_tools.py`. Code picks the similar deals and the checklist; the model writes the ideas and questions.
 
-Files: `pack.py`, `fake_brain.py`, `replay_exam.py` (with `judge`), `exam_fixture.py` (stand-in library built from the answer keys, used only when the brain has no playbooks).
-Run the exam: `python3 -m agents.meeting_prep.deal_brief.replay_exam`.
+Files: `pack.py`, `fake_brain.py`, `exam/replay_exam.py` (with `judge`), `exam/exam_fixture.py` (stand-in library built from the answer keys, used only when the brain has no playbooks).
+Run the exam: `python3 -m agents.meeting_prep.deal_brief.exam.replay_exam`.
+
+## Agent folder
+
+| File | What it holds |
+|---|---|
+| `agent.md` | Name, description, family, tools, roles. Read this first. |
+| `instructions.md` | The system prompt. |
+| `guardrails.md` | What the agent must never do. The code guards still enforce the rules. |
+| `memory.md` | The memory areas it reads and writes, and why. |
+| `graph.json` | What it does in each lifecycle step. |
+| `experience.md` | Approved lessons from past runs. The newest 20 go into the prompt. |
+| `pack.py`, `fake_brain.py` | The lifecycle code and the stand-in for the model. |
+| `exam/` | `replay_exam.py` and its data. |
+
+Other folders: `exam/`: `replay_exam.py`, `exam_fixture.py`.

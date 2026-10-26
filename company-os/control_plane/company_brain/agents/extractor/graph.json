@@ -1,0 +1,29 @@
+{
+  "agent": "brain_extractor",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Read the clean lines of the source."
+    },
+    {
+      "step": "understand",
+      "does": "Code finds candidate lines from topic and kind cues and flags injected lines."
+    },
+    {
+      "step": "decide",
+      "does": "The model returns the items with kind, topic, confidence and source lines."
+    },
+    {
+      "step": "check",
+      "does": "Code checks quotes, topics, kinds, opinions about people and injected lines."
+    },
+    {
+      "step": "act",
+      "does": "Store the items with their evidence."
+    },
+    {
+      "step": "remember",
+      "does": "Log how many items were stored."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "agent": "finance_watch",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Read the invoices, payments, budgets and travel share for the recent window."
+    },
+    {
+      "step": "understand",
+      "does": "Code finds the findings: duplicates, new-vendor payments, overruns and travel share."
+    },
+    {
+      "step": "decide",
+      "does": "The model explains each finding: evidence, why it matters and one next step."
+    },
+    {
+      "step": "check",
+      "does": "Code checks each finding against the computed one, and checks that no salary is stated."
+    },
+    {
+      "step": "act",
+      "does": "Send the message to the finance lead and ask for follow-up tasks (held for approval)."
+    },
+    {
+      "step": "remember",
+      "does": "Save a case for each finding."
+    }
+  ]
+}

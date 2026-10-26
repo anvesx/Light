@@ -4,7 +4,7 @@ import threading
 import unittest
 from types import SimpleNamespace
 
-from agents.meeting_prep.project_brief.replay_exam import KEY_PATH, seed_project_brain
+from agents.meeting_prep.project_brief.exam.replay_exam import KEY_PATH, seed_project_brain
 try:  # the console is a local experiment and may be absent
     from web_console.routes import meeting_prep_routes
 except ImportError:

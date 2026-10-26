@@ -7,7 +7,7 @@ from .tool_reply import DATE_RE, ToolInputError, build_tool, days_before, days_b
 AREA = "devx-internal"
 DEFAULT_DAYS = 90
 SALARY_MONTH_DAYS = 30
-POLICY = json.loads((Path(__file__).resolve().parents[2] / "agents" / "finance" / "travel_booking" / "travel_policy.json").read_text())
+POLICY = json.loads((Path(__file__).resolve().parents[2] / "agents" / "finance" / "travel_booking" / "scripts" / "travel_policy.json").read_text())
 LATE_DAYS, EARLY_FROM, EARLY_TO = POLICY["late_booking_days"], 14, 7   # a cheaper fare 14 to 7 days before is "earlier"
 MIN_SAVING_SHARE = POLICY["earlier_fare_min_saving_share"]             # "much cheaper": 30% or more below what was paid
 SHORT_FLIGHT_HOURS = POLICY["economy_only_under_hours"]

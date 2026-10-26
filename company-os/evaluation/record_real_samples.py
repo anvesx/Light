@@ -9,7 +9,7 @@ import sys
 import tempfile
 import time
 
-from agents.meeting_prep.live_copilot.live_session import LiveSession
+from agents.meeting_prep.live_copilot.scripts.live_session import LiveSession
 from control_plane.company_brain import inbox
 from control_plane.company_brain.pipeline import read_manifest_file
 from control_plane.connectors.spend_tools import make_trip_alternatives

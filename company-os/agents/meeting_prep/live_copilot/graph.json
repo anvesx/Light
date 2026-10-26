@@ -1,0 +1,29 @@
+{
+  "agent": "live_copilot",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Load the call and the brain view of its area."
+    },
+    {
+      "step": "understand",
+      "does": "Replay the lines through the listener, which finds gaps, contradictions and unasked kickoff items."
+    },
+    {
+      "step": "decide",
+      "does": "The model writes a short summary and next steps from the call and the suggestions."
+    },
+    {
+      "step": "check",
+      "does": "A one-shot run has no checks beyond reading the summary; the listener rules are plain code."
+    },
+    {
+      "step": "act",
+      "does": "No action is taken. The summary is the result."
+    },
+    {
+      "step": "remember",
+      "does": "The live session stores the call as a source for the brain."
+    }
+  ]
+}

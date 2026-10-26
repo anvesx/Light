@@ -6,7 +6,7 @@ import shutil
 import tempfile
 import unittest
 
-from agents.finance.spend_advice import replay_exam
+from agents.finance.spend_advice.exam import replay_exam
 from agents.finance.spend_advice.pack import BEST_PHRASE, inr
 from company_data.generate_trips import SPEND_RULES
 from control_plane.connectors.spend_tools import spend_tools

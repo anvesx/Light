@@ -1,12 +1,12 @@
 """Replay exam for the Playbook writer: link the keyed brain, write the four playbooks, compare topics, check evidence and leaks."""
 import json
 
-from control_plane.company_brain.agents.linker.replay_exam import KEY_PATH, seed_keyed_brain
+from control_plane.company_brain.agents.linker.exam.replay_exam import KEY_PATH, seed_keyed_brain
 from control_plane.company_brain.redaction import find_leaks
 from core.fake_model import FakeModel
 from wiring.build_company_os import build_company_os
 
-from .fake_brain import leaky_brain
+from ..fake_brain import leaky_brain
 
 EXAM, AGENT = "brain_playbook_replay", "brain_playbook"
 SECTION_OF = {"later_changed_topics": "later_changed_to", "went_right_topics": "went_right", "went_wrong_topics": "went_wrong"}
@@ -17,7 +17,7 @@ def _topics(playbook, section):
 
 
 def run_exam(cos=None):
-    from control_plane.company_brain.agents.linker.replay_exam import AGENT as LINKER
+    from control_plane.company_brain.agents.linker.exam.replay_exam import AGENT as LINKER
     cos = build_company_os(agents=(LINKER, AGENT), extra_backends={"sonnet-5-5": FakeModel({AGENT: leaky_brain, LINKER: leaky_brain})})
     try:
         seeded = seed_keyed_brain(cos)

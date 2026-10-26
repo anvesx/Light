@@ -6,7 +6,7 @@ from types import SimpleNamespace
 
 from control_plane.company_brain import link_tools, playbook_rules
 from control_plane.company_brain.agents.playbook.fake_brain import leaky_brain
-from control_plane.company_brain.agents.playbook.replay_exam import judge
+from control_plane.company_brain.agents.playbook.exam.replay_exam import judge
 from control_plane.company_brain.record_sync import sync_records
 from control_plane.company_brain.redaction import find_leaks, redact
 from core.fake_model import FakeModel

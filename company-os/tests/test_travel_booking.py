@@ -6,16 +6,17 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from agents.finance.travel_booking import replay_exam, service
-from agents.finance.travel_booking.policy_ranking import rank_flights, rank_hotels
-from agents.finance.travel_booking.request_parser import RequestError, parse_request
+from agents.finance.travel_booking.exam import replay_exam
+from agents.finance.travel_booking.scripts import service
+from agents.finance.travel_booking.scripts.policy_ranking import rank_flights, rank_hotels
+from agents.finance.travel_booking.scripts.request_parser import RequestError, parse_request
 from company_data.generate_trips import POLICY_RATE
 from control_plane.connectors.fare_search import search_flights, search_hotels
 from evaluation.run_all_exams import close_all
 from wiring.build_company_os import build_company_os
 
 TEXT = "flights for 3 people Mumbai to Pune on 2026-10-28, back on 2026-10-29"
-POLICY = json.loads((Path(replay_exam.__file__).parent / "travel_policy.json").read_text())
+POLICY = json.loads((Path(replay_exam.__file__).parent.parent / "scripts" / "travel_policy.json").read_text())
 
 
 class ParserTests(unittest.TestCase):

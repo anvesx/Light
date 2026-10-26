@@ -6,8 +6,9 @@ from control_plane.guardrails.outside_text import RULE
 
 
 class LifecycleRunner:
-    def __init__(self, runtime):
+    def __init__(self, runtime, lessons=None):
         self.runtime = runtime
+        self.lessons = lessons   # a LessonLog, or None: failed checks leave no candidate lesson
         self.log = runtime.memory.log_step
 
     def run(self, pack, task) -> RunResult:
@@ -39,6 +40,7 @@ class LifecycleRunner:
         problems = pack.check(ctx, decision, understood)
         self.log(ctx.run_id, "check", {"problems": problems})
         if problems:
+            self._note_lessons(pack, ctx, problems)
             return self._fail(ctx, problems, outcome.final_text)
 
         acted = [self._call(ctx, c) for c in pack.act(ctx, decision)]
@@ -55,6 +57,14 @@ class LifecycleRunner:
         else:
             name, args = call
         return self.runtime.invoke_tool(ctx, name, args)
+
+    def _note_lessons(self, pack, ctx, problems):
+        if self.lessons is None:
+            return
+        try:
+            self.lessons.record_failed_check(pack.name, ctx.run_id, problems, getattr(getattr(self.runtime, "clock", None), "now", ""))
+        except OSError:
+            pass   # a lesson that cannot be saved must not change the run
 
     def _fail(self, ctx, problems, final_text):
         result = self.runtime.close_run(ctx, "failed", final_text)

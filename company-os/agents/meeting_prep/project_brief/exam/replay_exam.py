@@ -7,7 +7,7 @@ from core.fake_model import FakeModel
 from control_plane.company_brain.inbox import receive
 from wiring.build_company_os import build_company_os
 
-from .fake_brain import naive_brain
+from ..fake_brain import naive_brain
 
 KEY_PATH = os.path.join(os.path.dirname(DB_PATH), "answer_keys.json")
 EXAM, AGENT = "meeting_prep_replay", "meeting_prep"

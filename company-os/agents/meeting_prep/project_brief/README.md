@@ -31,10 +31,23 @@ The brief ends with "N unconfirmed items". It never reads finance data or the pl
 **Tools.** `upcoming_meeting`, `project_open_items`, `project_recent_decisions`, `project_brain_items`, `recent_client_messages` (client text, treated as
 data), `send_private_message`. Who may start it: growth, csm, project_lead, ceo, rnd_lead, system. Approver roles: csm, ceo.
 
-**How it is scored.** `replay_exam.py` replays every past meeting that made decisions, using only memory from before that meeting.
+**How it is scored.** `exam/replay_exam.py` replays every past meeting that made decisions, using only memory from before that meeting.
 Score = the share of that meeting's decided topics the brief asked about. About 30% of decisions are surprises that nobody had
 asked about before, so about 0.67 is the practical ceiling. It also reports coverage of the topics that were asked before,
 a brain check (the PR05 brief must cite every `must_cite_keys` item, with the brain seeded from the answer key), and an injection check: an unsafe model that obeys a hidden order to email `outside@example.com` is run, and the guard must block it.
 
-Files: `pack.py` (the agent), `fake_brain.py` (deterministic stand-in for the model), `replay_exam.py` (the exam).
-Run the exam: `python3 -m agents.meeting_prep.replay_exam`.
+Files: `pack.py` (the agent), `fake_brain.py` (deterministic stand-in for the model), `exam/replay_exam.py` (the exam).
+Run the exam: `python3 -m agents.meeting_prep.project_brief.exam.replay_exam`.
+
+## Agent folder
+
+| File | What it holds |
+|---|---|
+| `agent.md` | Name, description, family, tools, roles. Read this first. |
+| `instructions.md` | The system prompt. |
+| `guardrails.md` | What the agent must never do. The code guards still enforce the rules. |
+| `memory.md` | The memory areas it reads and writes, and why. |
+| `graph.json` | What it does in each lifecycle step. |
+| `experience.md` | Approved lessons from past runs. The newest 20 go into the prompt. |
+| `pack.py`, `fake_brain.py` | The lifecycle code and the stand-in for the model. |
+| `exam/` | `replay_exam.py` and its data. |

@@ -44,7 +44,7 @@ def run_all(agents=ALL_AGENTS, real_pipeline=True):
     rows = []
     for name in agents:
         try:
-            exam = importlib.import_module(f"{AGENTS[name]}.replay_exam")
+            exam = importlib.import_module(f"{AGENTS[name]}.exam.replay_exam")
             importlib.import_module(f"{AGENTS[name]}.pack")
         except ImportError as e:
             rows.append({"agent": name, "measured": "-", "result": f"skipped, not ready ({e})", "passed": None, "raw": None})

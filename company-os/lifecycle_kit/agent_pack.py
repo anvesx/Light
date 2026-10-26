@@ -1,4 +1,5 @@
 """Base class for an agent pack. A pack fills in the lifecycle steps; the runner calls them in order."""
+from . import agent_folder
 
 
 class AgentPack:
@@ -11,7 +12,8 @@ class AgentPack:
         return []
 
     def system_prompt(self) -> str:
-        return ""
+        """instructions.md, the guardrails and the approved lessons from this pack's agent folder."""
+        return agent_folder.build_system_prompt(agent_folder.pack_folder(self))
 
     def record(self, ctx):
         """Collect the facts for this run (read tools, memory). Returns anything `understand` needs."""

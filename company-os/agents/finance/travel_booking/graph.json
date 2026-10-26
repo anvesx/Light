@@ -1,0 +1,29 @@
+{
+  "agent": "travel_booking",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Parse the request, then search flights, return flights and hotels."
+    },
+    {
+      "step": "understand",
+      "does": "Code ranks the options by the travel policy and keeps the best three."
+    },
+    {
+      "step": "decide",
+      "does": "The model writes a short letter that explains the ranking."
+    },
+    {
+      "step": "check",
+      "does": "Code checks policy, totals, flight numbers, amounts and names, and that the letter says nothing is booked."
+    },
+    {
+      "step": "act",
+      "does": "Send the letter and ask to book the first option. The booking waits for an Admin."
+    },
+    {
+      "step": "remember",
+      "does": "Save the options and the letter on the request record."
+    }
+  ]
+}

@@ -60,7 +60,7 @@ The full design, the hosting options with prices, the sign-in flow and the sourc
 | `core/` | The core harness: agent loop, tool registry, compaction, model gateway, prompt cache, fake model, real Claude, cost ledger |
 | `control_plane/` | The control plane: `guardrails/`, `company_memory/`, `company_brain/`, `people_surface/`, `triggers/`, `connectors/` |
 | `contract/` | The boundary between the core and everything else |
-| `agents/` | The two agents: `finance/` and `meeting_prep/` |
+| `agents/` | The agents: `finance/` and `meeting_prep/`. Each agent is one folder (see "Add an agent") |
 | `company_data/` | The dummy company: people, clients, projects, deals, trips, transcripts |
 | `lifecycle_kit/` | The steps every agent run follows: record, understand, decide, check, act, remember |
 | `wiring/` | Builds the company OS: joins the core, the control plane and the agents |
@@ -71,13 +71,39 @@ The full design, the hosting options with prices, the sign-in flow and the sourc
 
 The core never imports `control_plane/`, `agents/`, `lifecycle_kit/`, `web_console/` or `company_data/`. `tests/test_layer_boundary.py` checks this.
 
+## Add an agent
+
+Each agent is one folder with the same layout. The four brain agents live in `control_plane/company_brain/agents/`.
+
+```
+<agent>/
+  agent.md          name, description, family, tools, starter_roles, approver_roles, reads_library
+  instructions.md   the system prompt
+  guardrails.md     what the agent must never do (bullets; the code guards still enforce)
+  memory.md         the memory areas it reads and writes, and why
+  graph.json        what it does in each lifecycle step
+  experience.md     approved lessons; the newest 20 go into the prompt
+  pack.py           make_pack(parts) and the lifecycle code
+  fake_brain.py     the stand-in for the model
+  tools/ scripts/   its own tool code and helper modules (only if it has any)
+  exam/             replay_exam.py and its data
+  README.md
+```
+
+1. Copy a folder of a similar agent. Rename it and fill in the files. Keep the prompt only in `instructions.md`.
+2. Add the name and package to `AGENTS` and `FAMILIES` in `wiring/agent_registry.py`.
+3. Run `python3 -m unittest tests.test_agent_folders`. It checks the files, the name, the tools against `pack.tools()`, the roles and the graph order.
+4. Run `python3 -m evaluation.run_all_exams`. It loads `<package>.exam.replay_exam`.
+
+When a run fails its check, a candidate lesson is saved in the state folder (`<state_dir>/lessons`), never in the source. A person promotes it into `experience.md` (see `lifecycle_kit/README.md`).
+
 ## Run it
 
 Needs Python 3 (tested with 3.14). No packages to install.
 
 ```
 python3 -m company_data.generate_dummy_data      # build the dummy company
-python3 -m unittest discover -s tests -t .       # run all tests (541 pass, under 2 minutes)
+python3 -m unittest discover -s tests -t .       # run all tests (505 pass in this tree; under 2 minutes)
 python3 -m evaluation.run_all_exams              # 10 exams, one per agent
 python3 run_demo.py                              # one simulated day
 python3 -m web_console.serve                     # then open http://localhost:8800

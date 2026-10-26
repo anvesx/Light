@@ -41,8 +41,8 @@ A question about one trip (for example "what about TR012?") gets one of the two 
 
 ## How it is scored
 
-`replay_exam.py` asks about the day of each planted saving and scores found, missed and false alarms (a look-alike
-given a saving). Current result: 9 of 9 found, 0 false alarms. Run it with `python3 -m agents.spend_advisor.replay_exam`.
+`exam/replay_exam.py` asks about the day of each planted saving and scores found, missed and false alarms (a look-alike
+given a saving). Current result: 9 of 9 found, 0 false alarms. Run it with `python3 -m agents.finance.spend_advice.exam.replay_exam`.
 Tests: `tests/test_agent_spend_advisor.py`.
 
 ## Files in this folder
@@ -52,9 +52,22 @@ Tests: `tests/test_agent_spend_advisor.py`.
 | `__init__.py` | Marks the folder as a Python package. |
 | `pack.py` | The agent: reads the spend tools, builds the facts, checks the letter, sends it to the asker. |
 | `fake_brain.py` | Deterministic stand-in for the model: writes the letter from the computed facts. |
-| `replay_exam.py` | The exam: replays each planted saving and look-alike against the answer key. |
+| `exam/replay_exam.py` | The exam: replays each planted saving and look-alike against the answer key. |
 | `README.md` | This file. |
 
 ## Cheaper options
 
 The read tool `trip_alternatives` gives each trip the real cheaper flights (carrier, flight number, times, fare, saving) and hotels (name, rate, saving), at most 3 of each, cheapest first. The letter shows the top option after each saving. The exam also checks every option against the raw tables.
+
+## Agent folder
+
+| File | What it holds |
+|---|---|
+| `agent.md` | Name, description, family, tools, roles. Read this first. |
+| `instructions.md` | The system prompt. |
+| `guardrails.md` | What the agent must never do. The code guards still enforce the rules. |
+| `memory.md` | The memory areas it reads and writes, and why. |
+| `graph.json` | What it does in each lifecycle step. |
+| `experience.md` | Approved lessons from past runs. The newest 20 go into the prompt. |
+| `pack.py`, `fake_brain.py` | The lifecycle code and the stand-in for the model. |
+| `exam/` | `replay_exam.py` and its data. |

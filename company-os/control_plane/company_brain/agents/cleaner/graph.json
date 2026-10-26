@@ -1,0 +1,29 @@
+{
+  "agent": "brain_cleaner",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Read the whole source from the run's area."
+    },
+    {
+      "step": "understand",
+      "does": "Code removes filler and fixes speaker names, and picks the lines that need translation."
+    },
+    {
+      "step": "decide",
+      "does": "The model translates those lines into plain English, or says null."
+    },
+    {
+      "step": "check",
+      "does": "Code checks that each line to translate has exactly one entry and no translation is empty."
+    },
+    {
+      "step": "act",
+      "does": "Queue a check row for each gap, then save the clean lines."
+    },
+    {
+      "step": "remember",
+      "does": "Log how many lines were cleaned and how many were not translated."
+    }
+  ]
+}

@@ -6,7 +6,7 @@ from pathlib import Path
 CORE = Path(__file__).resolve().parent.parent / "core"
 CONTROL_PLANE = Path(__file__).resolve().parent.parent / "control_plane"
 # Exam scripts that build a FakeModel; moving them to evaluation/ is a later ticket.
-CORE_IMPORT_ALLOW = {"company_brain/agents/playbook/replay_exam.py"}
+CORE_IMPORT_ALLOW = {"company_brain/agents/playbook/exam/replay_exam.py"}
 FORBIDDEN = {"control_plane", "agents", "lifecycle_kit", "web_console", "company_data"}
 
 

@@ -1,0 +1,29 @@
+{
+  "agent": "brain_linker",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Read the source's items and the older items of the area."
+    },
+    {
+      "step": "understand",
+      "does": "Code plans the links, scopes and state changes, and lists the unsure pairs."
+    },
+    {
+      "step": "decide",
+      "does": "The model confirms each unsure pair, or leaves it."
+    },
+    {
+      "step": "check",
+      "does": "Code checks link types, areas, and that every link is planned or an unsure pair."
+    },
+    {
+      "step": "act",
+      "does": "Save the links, scopes and state changes."
+    },
+    {
+      "step": "remember",
+      "does": "Log how many links were saved."
+    }
+  ]
+}

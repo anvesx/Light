@@ -6,7 +6,7 @@ from control_plane.company_brain.topic_lexicon import load_lexicon
 from contract.types import RunResult, Task
 from control_plane.guardrails import role_scopes
 
-from .pack import INSTRUCTIONS, SYSTEM, CONTEXT_MARKER, lines_for_listener, load_call, summary_context
+from ..pack import INSTRUCTIONS, CONTEXT_MARKER, lines_for_listener, load_call, summary_context
 
 
 class Refused(Exception):
@@ -86,7 +86,7 @@ class LiveSession:
         decision = {}
         if lines:
             outcome = self.cos.runtime.run_loop(self.ctx, INSTRUCTIONS + CONTEXT_MARKER + json.dumps(context, separators=(",", ":")),
-                                                system=SYSTEM)
+                                                system=self.cos.packs["live_copilot"].system_prompt())
             try:
                 start, stop = outcome.final_text.find("{"), outcome.final_text.rfind("}")
                 decision = json.loads(outcome.final_text[start:stop + 1])

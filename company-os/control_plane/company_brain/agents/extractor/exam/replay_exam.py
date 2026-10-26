@@ -5,7 +5,7 @@ from pathlib import Path
 from control_plane.company_brain.pipeline import ingest_manifest
 from wiring.build_company_os import build_company_os
 
-KEY_PATH = Path(__file__).resolve().parents[4] / "company_data" / "answer_keys.json"
+KEY_PATH = Path(__file__).resolve().parents[5] / "company_data" / "answer_keys.json"
 EXAM, AGENT, PASS_AT = "brain_extractor_replay", "brain_extractor", 0.9
 NEEDS = ("brain_cleaner", "brain_extractor")
 

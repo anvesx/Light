@@ -1,0 +1,29 @@
+{
+  "agent": "meeting_prep",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Collect the meeting, its open items and decisions, and the brain view for the client's area."
+    },
+    {
+      "step": "understand",
+      "does": "Keep the open items and brain items that are still current, and find who attends."
+    },
+    {
+      "step": "decide",
+      "does": "The model lists the questions to settle, each with the memory item it cites."
+    },
+    {
+      "step": "check",
+      "does": "Code checks every question: it has text, cites an item of this area that was open, and goes to a DevX person."
+    },
+    {
+      "step": "act",
+      "does": "Send the brief as a private message to each DevX attendee."
+    },
+    {
+      "step": "remember",
+      "does": "Log a short summary of the brief in the run."
+    }
+  ]
+}

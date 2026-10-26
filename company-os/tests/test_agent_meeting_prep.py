@@ -3,7 +3,7 @@ import json
 import tempfile
 import unittest
 
-from agents.meeting_prep.project_brief.replay_exam import run_exam
+from agents.meeting_prep.project_brief.exam.replay_exam import run_exam
 from wiring.build_company_os import build_company_os
 
 AGENT = "meeting_prep"

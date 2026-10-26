@@ -9,8 +9,6 @@ from lifecycle_kit.agent_pack import AgentPack
 CONTEXT_MARKER = "CONTEXT_JSON:\n"
 RISK_KINDS = ("risk", "blocker", "question")
 
-SYSTEM = ("You prepare a DevX growth person for a live deal. Use only the facts in the context: the deal's own items and "
-          "the redacted playbooks. Name no client contact. Write for a person who is not an engineer.")
 INSTRUCTIONS = (
     "Task: write the deal brief. Every idea, risk and question cites a playbook id (PB-...) or an item id of this deal. "
     "Label any item with confirmed false as Unconfirmed. Give each objection topic a closing idea and ask every checklist topic.\n"
@@ -40,9 +38,6 @@ class DealBriefPack(AgentPack):
 
     def tools(self):
         return [*deal_brain_tools(self.parts), make_send_private_message(self.parts.outbox)]
-
-    def system_prompt(self):
-        return SYSTEM
 
     def record(self, ctx):
         deal_id = ctx.task.inputs.get("deal_id")

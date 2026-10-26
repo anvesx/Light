@@ -5,8 +5,6 @@ from control_plane.company_brain import link_rules, link_tools
 from lifecycle_kit.agent_pack import AgentPack
 
 CONTEXT_MARKER = "CONTEXT_JSON:\n"
-SYSTEM = ("You check links between facts in a client's company memory. Use only the context. "
-          "Answer for each unsure pair only if you are sure of the relation.")
 INSTRUCTIONS = ('Task: confirm the planned links. For each unsure pair you may add one link of type supersedes, refines, same_as, '
                 'answers, follows_up or contradicts, or leave it out. Answer with final JSON only: '
                 '{"links": [{"from": id, "rel": str, "to": id}], "scope": [{"item_id": id, "project_id": str|null, "deal_id": str|null}]}.\n')
@@ -29,9 +27,6 @@ class LinkerPack(AgentPack):
         b = self.parts.brain
         return [link_tools.make_read_source_items(b), link_tools.make_set_scope(b), link_tools.make_add_links(b),
                 link_tools.make_set_state(b)]
-
-    def system_prompt(self):
-        return SYSTEM
 
     def record(self, ctx):
         data = _unwrap(ctx.notes["invoke_tool"]("brain_read_source_items", {"source_id": ctx.task.inputs.get("source_id")})["result"])

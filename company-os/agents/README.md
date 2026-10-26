@@ -24,3 +24,5 @@ Answers the CEO's and finance lead's spending questions at any time: cost by cat
 | `finance/spend_advice/` | Spend advisor: spending questions, trip verdicts and savings, for the CEO and finance lead. |
 
 The agent names stay `meeting_prep`, `finance_watch` and `spend_advisor`. `wiring/agent_registry.py` maps each name to its folder. The other agents moved to `experiments/agents/`.
+
+Every agent folder holds `agent.md`, `instructions.md`, `guardrails.md`, `memory.md`, `graph.json`, `experience.md`, `pack.py`, `fake_brain.py`, `exam/` and a README, and may hold `tools/` and `scripts/`. See `company-os/README.md`, section "Add an agent".

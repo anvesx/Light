@@ -4,7 +4,7 @@ import json
 from wiring.build_company_os import build_company_os
 
 from .call_brain_seed import KEYS, seed_history
-from .live_session import LiveSession
+from ..scripts.live_session import LiveSession
 
 EXAM, AGENT = "live_copilot_replay", "live_copilot"
 

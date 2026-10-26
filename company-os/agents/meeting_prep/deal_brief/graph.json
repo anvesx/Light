@@ -1,0 +1,29 @@
+{
+  "agent": "deal_brief",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Read the deal overview, the similar playbooks and the kickoff checklist."
+    },
+    {
+      "step": "understand",
+      "does": "Code picks the similar deals and the checklist, and lists the deal's risks."
+    },
+    {
+      "step": "decide",
+      "does": "The model writes the ideas to close, the risks and the kickoff questions."
+    },
+    {
+      "step": "check",
+      "does": "Code checks cites, unconfirmed labels, checklist coverage and contact leaks."
+    },
+    {
+      "step": "act",
+      "does": "Send the brief to the person who asked."
+    },
+    {
+      "step": "remember",
+      "does": "Log what was sent."
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import unittest
 from types import SimpleNamespace
 
 from control_plane.company_brain import link_rules
-from control_plane.company_brain.agents.linker.replay_exam import judge
+from control_plane.company_brain.agents.linker.exam.replay_exam import judge
 from control_plane.company_brain.record_sync import sync_records
 from wiring.build_company_os import build_company_os
 

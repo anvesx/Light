@@ -4,7 +4,7 @@ import shutil
 import tempfile
 import unittest
 
-from agents.finance.watch import replay_exam
+from agents.finance.watch.exam import replay_exam
 from contract.types import ModelReply
 from wiring.build_company_os import build_company_os
 

@@ -95,11 +95,6 @@ class FinanceWatchPack(AgentPack):
         return [*books_tools(self.parts.data_conn), make_send_private_message(self.parts.outbox),
                 make_create_followup_task(self.parts.memory)]
 
-    def system_prompt(self):
-        return ("You are the finance watch agent for DevX. Explain each finding for the finance lead in plain, short "
-                "sentences: the evidence, why it matters, and one next step. Use only the facts you are given. Never "
-                "state one person's salary: team totals only. Answer with JSON only.")
-
     def record(self, ctx):
         return {"invoices": _read(ctx, "invoices_window", {"days": 30}),
                 "payments": _read(ctx, "payments_window", {"days": RECENT_DAYS, "min_amount_inr": LARGE_PAYMENT_INR + 1}),

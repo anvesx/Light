@@ -3,7 +3,7 @@ import shutil
 import tempfile
 from types import SimpleNamespace
 
-from agents.finance.travel_booking import service
+from agents.finance.travel_booking.scripts import service
 from control_plane.company_brain import pipeline
 from evaluation.run_all_exams import close_all
 from control_plane.triggers.dispatch import dispatch

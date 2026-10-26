@@ -4,7 +4,7 @@ import json
 from contract.types import ModelReply
 
 from .pack import MARKER
-from .policy_ranking import inr, time12
+from .scripts.policy_ranking import inr, time12
 
 
 def _flight_line(n, f, pax):

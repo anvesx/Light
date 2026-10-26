@@ -7,8 +7,6 @@ from control_plane.company_brain.topic_lexicon import load_lexicon
 from lifecycle_kit.agent_pack import AgentPack
 
 CONTEXT_MARKER = "CONTEXT_JSON:\n"
-SYSTEM = ("You write a redacted playbook of a closed deal for the company library. Use only the context. "
-          "Never write a person's name, an email address, a phone number or pay details.")
 INSTRUCTIONS = ("Task: return the playbook as given, with clearer wording if you can. Keep every item id and topic. "
                 'Answer with final JSON only: {"client_label": str, "revenue_inr": int, "sections": {...}, "tags": [str], '
                 '"checklist": [{"topic": str, "question": str, "why": str, "learned_from": [str], "industries": [str]}]}.\n')
@@ -31,9 +29,6 @@ class PlaybookPack(AgentPack):
         b = self.parts.brain
         return [link_tools.make_read_deal(b, self.parts.data_conn), link_tools.make_publish_playbook(b),
                 link_tools.make_save_checklist(b)]
-
-    def system_prompt(self):
-        return SYSTEM
 
     def record(self, ctx):
         read, deal_id = ctx.notes["invoke_tool"], ctx.task.inputs.get("deal_id")

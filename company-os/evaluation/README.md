@@ -2,7 +2,7 @@
 
 **Role in the harness:** Evaluation: scores every agent against planted cases, so we know if an agent is good enough, not only if it runs.
 
-The dummy company has cases planted on purpose: a duplicate invoice, a project that is slipping, a refund pattern. It also has look-alikes that must not raise an alarm. Each agent pack has a replay exam (`agents/<name>/replay_exam.py`). The exam replays past days, runs the agent, and counts the cases it found, the cases it missed and the false alarms.
+The dummy company has cases planted on purpose: a duplicate invoice, a project that is slipping, a refund pattern. It also has look-alikes that must not raise an alarm. Each agent pack has a replay exam (`<agent folder>/exam/replay_exam.py`). The exam replays past days, runs the agent, and counts the cases it found, the cases it missed and the false alarms.
 
 This folder runs all the exams together. Each exam gets its own fresh Company OS, so one exam cannot change another.
 
@@ -22,7 +22,7 @@ It prints one table (agent, what is measured, result, pass or fail) and writes `
 | `fraud_watch` | every planted pattern is found, no false alarms |
 | `hiring_forecast` | its team-by-team shortage and spare-capacity calls all agree with a check computed from the raw tables |
 
-Any other pack with a `replay_exam.py` is picked up automatically (pass when nothing is missed and there are no false alarms).
+Any other pack with an `exam/replay_exam.py` is picked up automatically (pass when nothing is missed and there are no false alarms).
 
 The command exits with code 1 if any exam fails.
 

@@ -71,11 +71,24 @@ Finance lead, CEO, and the system timer. Other roles, such as engineers, are ref
 
 ## How it is scored
 
-`replay_exam.py` replays the planted cases. For each one, it runs the agent as of the first day a simple rule could
+`exam/replay_exam.py` replays the planted cases. For each one, it runs the agent as of the first day a simple rule could
 see it. Score: cases found, cases missed, and false alarms (a look-alike flagged). Current result: 8 of 8 found,
-0 false alarms. Scores are saved with `memory.add_score`. Run it with `python3 -m agents.finance_watch.replay_exam`.
+0 false alarms. Scores are saved with `memory.add_score`. Run it with `python3 -m agents.finance.watch.exam.replay_exam`.
 
 ## Files
 
-`pack.py` (the agent), `fake_brain.py` (stand-in for the model), `replay_exam.py` (the exam), tests in
+`pack.py` (the agent), `fake_brain.py` (stand-in for the model), `exam/replay_exam.py` (the exam), tests in
 `tests/test_agent_finance_watch.py`.
+
+## Agent folder
+
+| File | What it holds |
+|---|---|
+| `agent.md` | Name, description, family, tools, roles. Read this first. |
+| `instructions.md` | The system prompt. |
+| `guardrails.md` | What the agent must never do. The code guards still enforce the rules. |
+| `memory.md` | The memory areas it reads and writes, and why. |
+| `graph.json` | What it does in each lifecycle step. |
+| `experience.md` | Approved lessons from past runs. The newest 20 go into the prompt. |
+| `pack.py`, `fake_brain.py` | The lifecycle code and the stand-in for the model. |
+| `exam/` | `replay_exam.py` and its data. |

@@ -2,9 +2,9 @@
 import tempfile
 import unittest
 
-from agents.meeting_prep.live_copilot.call_brain_seed import seed_history
-from agents.meeting_prep.live_copilot.live_session import LiveSession, Refused
-from agents.meeting_prep.live_copilot.replay_exam import judge, run_exam
+from agents.meeting_prep.live_copilot.exam.call_brain_seed import seed_history
+from agents.meeting_prep.live_copilot.scripts.live_session import LiveSession, Refused
+from agents.meeting_prep.live_copilot.exam.replay_exam import judge, run_exam
 from wiring.build_company_os import build_company_os
 
 

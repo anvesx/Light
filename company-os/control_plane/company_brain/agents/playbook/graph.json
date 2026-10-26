@@ -1,0 +1,29 @@
+{
+  "agent": "brain_playbook",
+  "steps": [
+    {
+      "step": "record",
+      "does": "Read the deal and its items from the client's area."
+    },
+    {
+      "step": "understand",
+      "does": "Code builds the five sections and redacts names, emails and phone numbers."
+    },
+    {
+      "step": "decide",
+      "does": "The model returns the playbook with clearer wording."
+    },
+    {
+      "step": "check",
+      "does": "Code checks the sections, topics, own-area evidence and leaks. Any leak stops the run."
+    },
+    {
+      "step": "act",
+      "does": "Publish the playbook to the library and save the checklist questions."
+    },
+    {
+      "step": "remember",
+      "does": "Log what was published."
+    }
+  ]
+}

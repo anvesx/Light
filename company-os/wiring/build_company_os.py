@@ -22,6 +22,7 @@ from control_plane.guardrails.access_policy import AccessPolicy
 from control_plane.guardrails.every_action_check import ActionGuard
 from control_plane.guardrails.tool_scope import ToolScope
 from control_plane.guardrails.way_in_check import WayInCheck
+from lifecycle_kit.lessons import LessonLog
 from lifecycle_kit.lifecycle_runner import LifecycleRunner
 from control_plane.people_surface.approval_queue import Approvals
 from control_plane.people_surface.private_outbox import Outbox
@@ -107,7 +108,7 @@ def build_company_os(agents=None, *, state_dir=None, data_db=DATA_DB, now="2026-
     for pack in packs.values():
         pack.register(runtime, policy)
     cos = CompanyOS(data_conn, memory, outbox, approvals, clock, directory, policy, ledger, gateway, runtime,
-                    LifecycleRunner(runtime), way_in, packs, state_dir, brain)
+                    LifecycleRunner(runtime, LessonLog(os.path.join(state_dir, "lessons"))), way_in, packs, state_dir, brain)
     if seed_brain and "brain_cleaner" in packs:  # the brain starts filled: records, then every history source
         from control_plane.company_brain import pipeline
         from control_plane.company_brain.record_sync import sync_records

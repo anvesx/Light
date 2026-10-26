@@ -8,9 +8,9 @@ from pathlib import Path
 from company_data.generate_trips import FLIGHT_HOURS, POLICY_RATE
 from wiring.build_company_os import build_company_os
 
-from . import service
-from .request_parser import nights_of
-from .policy_ranking import rooms_for
+from ..scripts import service
+from ..scripts.request_parser import nights_of
+from ..scripts.policy_ranking import rooms_for
 
 AGENT, APPROVER = "travel_booking", "P01"
 HERE = Path(__file__).parent
@@ -39,7 +39,7 @@ def _bookings(cos):
 
 def run_exam(cos=None) -> dict:
     cos = cos or build_company_os(agents=(AGENT,))
-    policy = json.loads((HERE / "travel_policy.json").read_text())
+    policy = json.loads((HERE.parent / "scripts" / "travel_policy.json").read_text())
     cases = json.loads((HERE / "exam_requests.json").read_text())["cases"]
     failed, violations, booked_early, double, wrong_book = [], 0, 0, 0, 0
     for case in cases:
