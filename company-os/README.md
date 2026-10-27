@@ -103,7 +103,7 @@ Needs Python 3 (tested with 3.14). No packages to install.
 
 ```
 python3 -m company_data.generate_dummy_data      # build the dummy company
-python3 -m unittest discover -s tests -t .       # run all tests (505 pass in this tree; under 2 minutes)
+python3 -m unittest discover -s tests -t .       # run all tests (539 pass, 4 skipped, in this tree; under 2 minutes)
 python3 -m evaluation.run_all_exams              # 10 exams, one per agent
 python3 run_demo.py                              # one simulated day
 python3 -m web_console.serve                     # then open http://localhost:8800

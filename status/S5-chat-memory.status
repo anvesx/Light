@@ -1,0 +1,7 @@
+ID=S5
+FEATURE=Step 5: company-os conversation and journey ids, chat history, per-person memory
+REPO=company-os
+STATUS=verified
+AGENT=main session (re-ran 539 tests and 10 exams)
+SINCE=2026-10-27 01:15 PM IST
+NOTE=runs carry conversation_id, journey_id, parent_run_id; CompanyOS.chat loads earlier turns and the person's notes; see docs/evidence/S5-chat-memory.md

@@ -12,7 +12,7 @@ RELS = ("supersedes", "answers", "refines", "follows_up", "about", "contradicts"
 AREA_KINDS = ("client", "internal", "hold", "library")
 FIXED_AREAS = (("devx-internal", "DevX internal", "internal"), ("hold", "Hold: client not decided", "hold"),
                ("playbooks", "Playbook library", "library"))
-TABLES = ("scores", "cases", "run_steps", "runs", "links", "items", "areas")
+TABLES = ("person_memory", "scores", "cases", "run_steps", "runs", "links", "items", "areas")
 
 
 def _json(value):
@@ -33,9 +33,20 @@ class MemoryStore:
 
     def _create(self):
         self.conn.executescript((HERE / "schema.sql").read_text())
+        self._migrate_runs()
         with self.conn:
             for area_id, name, kind in FIXED_AREAS:
                 self.conn.execute("INSERT OR IGNORE INTO areas VALUES (?, ?, ?)", (area_id, name, kind))
+
+    def _migrate_runs(self):
+        """Add the conversation columns to a database file made before they existed, then index them."""
+        have = {r["name"] for r in self.conn.execute("PRAGMA table_info(runs)")}
+        with self.conn:
+            for column in ("conversation_id", "journey_id", "parent_run_id"):
+                if column not in have:
+                    self.conn.execute(f"ALTER TABLE runs ADD COLUMN {column} TEXT NOT NULL DEFAULT ''")
+            self.conn.execute("CREATE INDEX IF NOT EXISTS runs_by_conversation ON runs(conversation_id)")
+            self.conn.execute("CREATE INDEX IF NOT EXISTS runs_by_journey ON runs(journey_id)")
 
     def reset(self):
         """Drop every table and build them again, empty."""
@@ -145,13 +156,42 @@ class MemoryStore:
         return ScopedMemory(self, area_ids)
 
     # runs and steps
-    def start_run(self, agent, trigger_kind, caller_id, area_id, started_at=None):
+    def _next_key(self, prefix, column):
+        """Next conv_ or jr_ id: one more than the count of ids in use, then the first free number."""
+        n = self.conn.execute(f"SELECT COUNT(DISTINCT {column}) FROM runs WHERE {column} != ''").fetchone()[0] + 1
+        while self.conn.execute(f"SELECT 1 FROM runs WHERE {column} = ?", (f"{prefix}{n:06d}",)).fetchone():
+            n += 1
+        return f"{prefix}{n:06d}"
+
+    def new_conversation_id(self):
+        return self._next_key("conv_", "conversation_id")
+
+    def new_journey_id(self):
+        return self._next_key("jr_", "journey_id")
+
+    def start_run(self, agent, trigger_kind, caller_id, area_id, started_at=None, *,
+                  conversation_id="", journey_id="", parent_run_id=""):
         run_id = self._next_id("R", "runs", "run_id")
         with self.conn:
             self.conn.execute(
-                "INSERT INTO runs (run_id, agent, trigger_kind, caller_id, area_id, started_at) VALUES (?, ?, ?, ?, ?, ?)",
-                (run_id, agent, trigger_kind, caller_id, area_id, started_at or self._now()))
+                "INSERT INTO runs (run_id, agent, trigger_kind, caller_id, area_id, started_at, conversation_id, journey_id,"
+                " parent_run_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (run_id, agent, trigger_kind, caller_id, area_id, started_at or self._now(),
+                 conversation_id or "", journey_id or "", parent_run_id or ""))
         return run_id
+
+    def conversation_runs(self, conversation_id):
+        """Every run of one conversation, oldest first."""
+        return self._runs_where("conversation_id", conversation_id)
+
+    def journey_runs(self, journey_id):
+        """Every run of one journey (one request and the child runs it started), oldest first."""
+        return self._runs_where("journey_id", journey_id)
+
+    def _runs_where(self, column, value):
+        if not value:
+            return []
+        return [dict(r) for r in self.conn.execute(f"SELECT * FROM runs WHERE {column} = ? ORDER BY run_id", (value,))]
 
     def get_run(self, run_id):
         row = self.conn.execute("SELECT * FROM runs WHERE run_id = ?", (run_id,)).fetchone()

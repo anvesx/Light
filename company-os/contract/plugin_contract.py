@@ -29,6 +29,7 @@ class RunLog:
     """The run log the core writes to. The control plane supplies it; wiring passes it in."""
 
     def start_run(self, agent, trigger_kind, caller_id, area_id, started_at=None) -> str:
+        """A log may also take conversation_id, journey_id and parent_run_id keywords; the runtime passes them only then."""
         raise NotImplementedError
 
     def log_step(self, run_id, step, detail=None, at=None) -> None:

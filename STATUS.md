@@ -1,6 +1,6 @@
 # Light/ build status
 
-_Regenerated 2026-10-26 16:17 IST from `status/*.status` — do not hand-edit this file; edit your feature's own status file and re-run `bash status/render.sh`._
+_Regenerated 2026-10-27 13:13 IST from `status/*.status` — do not hand-edit this file; edit your feature's own status file and re-run `bash status/render.sh`._
 
 | # | Feature | Repo | Status | Agent | Since | Note |
 |---|---|---|---|---|---|---|
@@ -50,3 +50,4 @@ _Regenerated 2026-10-26 16:17 IST from `status/*.status` — do not hand-edit th
 | S2 | Step 2 — write Light/FEATURES.md (atomic list, ordered by time-to-visible-output) | Light (all) | done | main session | 2026-09-07 01:23 IST | 40 features, P0-P4, committed |
 | S3 | Step 3 — copy company-os (Python agent harness) into Light/company-os | company-os | done | Pratham (with Claude) | 2026-10-23 10:49 IST | 326 files copied with git ls-files from anvesx/company-os @ ed8eea6; 483 tests and 10 exams pass unchanged; see docs/evidence/S3-import-company-os.md |
 | S4 | Step 4: company-os agents restructured into agent folders, with a lessons file | company-os | verified | main session (re-ran 505 tests, 10 exams and three fake-model runs) | 2026-10-26 16:10 IST | 10 agents use one folder layout (agent.md, instructions.md, guardrails.md, memory.md, graph.json, experience.md); failed checks leave candidate lessons in the state dir; see docs/evidence/S4-agent-folders.md |
+| S5 | Step 5: company-os conversation and journey ids, chat history, per-person memory | company-os | verified | main session (re-ran 539 tests and 10 exams) | 2026-10-27 01:15 PM IST | runs carry conversation_id, journey_id, parent_run_id; CompanyOS.chat loads earlier turns and the person's notes; see docs/evidence/S5-chat-memory.md |

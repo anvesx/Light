@@ -57,6 +57,9 @@ class Task:
     inputs: dict = field(default_factory=dict)
     max_steps: int = 12
     model: str = "fake"
+    conversation_id: str = ""  # empty: the runtime makes a new one
+    journey_id: str = ""       # empty: the runtime makes a new one
+    parent_run_id: str = ""    # set on a child run
 
 
 @dataclass

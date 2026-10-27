@@ -2,7 +2,7 @@
 
 What is done, what is in progress, what is next, and the decisions made. Update this file with every change. Newest first in each section. Times are IST.
 
-Last updated: Oct 22, 2026.
+Last updated: Oct 27, 2026.
 
 ## In progress
 
@@ -29,6 +29,7 @@ Last updated: Oct 22, 2026.
 
 | Date | What | Ticket |
 |---|---|---|
+| Oct 27 | Chat: conversation and journey ids on every run, chat history as context (half of the model window, old turns summarised), per-person memory (`remember`, `what do you remember`, `forget`) and `CompanyOS.chat`. 539 tests and 10 exams pass. Decision: a memory request is handled by a rule parser, not by the model, so text from outside cannot save a note | S5 |
 | Oct 22 | Research and design: one cloud VM per user, agent boxes inside it, sign-in through a live view, hosting options and cost | `docs/research/per-user-vms.md`, `README.md` |
 | Oct 21 | Plan for running agents 24/7: eight control-plane ideas, autonomy levels, rules that never change, and a build order | `PLAN_24x7.md` |
 | Oct 19 | Browser-check fixes: a CSM no longer sees deal-stage sources (sales calls before the signed SOW), enforced on the data; only real changed decisions show "Changed on"; Home cost total matches the runs. 551 tests, 10 exams pass | (fix) |

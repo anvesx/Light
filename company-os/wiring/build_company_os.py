@@ -11,6 +11,7 @@ from control_plane.company_brain import BrainStore
 from company_data import DB_PATH as DATA_DB, connect
 from company_data.generate_dummy_data import build as build_dummy_data
 from control_plane.company_memory import MemoryStore
+from control_plane.company_memory.person_memory import PersonMemory, PersonMemoryError, parse_request, wants_everything
 from control_plane.connectors.meetings_to_memory import sync_meetings
 from control_plane.connectors.people_directory import PeopleDirectory
 from core.claude_cli_model import ClaudeCliModel
@@ -45,6 +46,15 @@ class Parts:
 
 
 @dataclass
+class ChatReply:
+    conversation_id: str
+    journey_id: str
+    run_id: str
+    status: str
+    text: str
+
+
+@dataclass
 class CompanyOS:
     data_conn: object
     memory: object
@@ -61,6 +71,7 @@ class CompanyOS:
     packs: dict = field(default_factory=dict)
     state_dir: str = ""
     brain: object = None
+    person_memory: object = None
 
     def run(self, agent, caller_id, area_id, trigger_kind="request", inputs=None, model="fake"):
         """Start one agent run through the lifecycle runner (the way-in check runs inside)."""
@@ -68,6 +79,53 @@ class CompanyOS:
         task = Task(agent=agent, caller_id=caller_id, area_id=area_id, trigger_kind=trigger_kind,
                     inputs=inputs or {}, model=model)
         return self.runner.run(self.packs[agent], task)
+
+    def chat(self, caller_id, area_id, message, conversation_id=None, agent="meeting_prep", inputs=None, model="fake"):
+        """One chat message. A memory request ("remember ...", "what do you remember", "forget ...") is handled here,
+        in code. Anything else runs the agent with the whole conversation and the person's notes as context."""
+        from contract.types import Task
+        conversation_id = conversation_id or self.memory.new_conversation_id()
+        journey_id = self.memory.new_journey_id()
+        request = parse_request(message)
+        if request is None:
+            task = Task(agent=agent, caller_id=caller_id, area_id=area_id, trigger_kind="request", prompt=message,
+                        inputs=inputs or {}, model=model, conversation_id=conversation_id, journey_id=journey_id)
+            result = self.runner.run(self.packs[agent], task)
+            return ChatReply(conversation_id, journey_id, result.run_id, result.status, result.final_text or result.reason)
+        return self._memory_request(caller_id, area_id, message, request, conversation_id, journey_id, agent)
+
+    def _memory_request(self, caller_id, area_id, message, request, conversation_id, journey_id, agent):
+        """Record the request as a run of agent person_memory, so the ids and the log stay complete."""
+        from contract.types import Task
+        run_id = self.memory.start_run("person_memory", "request", caller_id, area_id, self.clock.now,
+                                       conversation_id=conversation_id, journey_id=journey_id)
+        denied = self.way_in.admit(Task(agent=agent, caller_id=caller_id, area_id=area_id, trigger_kind="request"))
+        if denied.verdict != "allow":
+            self.memory.log_step(run_id, "refused", {"verdict": denied.verdict, "reason": denied.reason})
+            self.memory.end_run(run_id, "refused", 0.0, 0, 0, self.clock.now)
+            return ChatReply(conversation_id, journey_id, run_id, "refused", denied.reason)
+        self.memory.log_step(run_id, "opened", {"agent": "person_memory", "area_id": area_id, "prompt": message,
+                                                "conversation_id": conversation_id, "journey_id": journey_id,
+                                                "parent_run_id": ""})
+        kind, text = request
+        status = "done"
+        try:
+            if kind == "remember":
+                self.person_memory.remember(caller_id, text, source_journey_id=journey_id)
+                reply = f"I will remember: {text}"
+            elif kind == "list":
+                items = self.person_memory.list(caller_id)
+                reply = "\n".join(["I remember:", *[f"- {i['text']}" for i in items]]) if items else "I do not remember anything yet."
+            elif wants_everything(text):
+                reply = f"Forgot {self.person_memory.forget_all(caller_id)} note(s)."
+            else:
+                count = self.person_memory.forget(caller_id, match=text)
+                reply = f"Forgot {count} note(s) that mention: {text}" if count else f"I found no note that mentions: {text}"
+        except PersonMemoryError as e:
+            status, reply = "failed", str(e)
+        self.memory.log_step(run_id, "closed", {"status": status, "final_text": reply})
+        self.memory.end_run(run_id, status, 0.0, 0, 0, self.clock.now)
+        return ChatReply(conversation_id, journey_id, run_id, status, reply)
 
 
 def build_company_os(agents=None, *, state_dir=None, data_db=DATA_DB, now="2026-10-19T09:00",
@@ -103,12 +161,13 @@ def build_company_os(agents=None, *, state_dir=None, data_db=DATA_DB, now="2026-
         backends["claude-cli"] = ClaudeCliModel()
     gateway = Gateway(backends, ledger=ledger, cache=PromptCache(), clock=clock)
     way_in = WayInCheck(directory, gateway, policy)
+    person_memory = PersonMemory(memory, data_conn)
     runtime = Runtime(gateway, memory, way_in, plugins=[ToolScope(policy), ActionGuard(policy, approvals, directory, memory)],
-                      clock=clock)
+                      clock=clock, person_memory=person_memory)
     for pack in packs.values():
         pack.register(runtime, policy)
     cos = CompanyOS(data_conn, memory, outbox, approvals, clock, directory, policy, ledger, gateway, runtime,
-                    LifecycleRunner(runtime, LessonLog(os.path.join(state_dir, "lessons"))), way_in, packs, state_dir, brain)
+                    LifecycleRunner(runtime, LessonLog(os.path.join(state_dir, "lessons"))), way_in, packs, state_dir, brain, person_memory)
     if seed_brain and "brain_cleaner" in packs:  # the brain starts filled: records, then every history source
         from control_plane.company_brain import pipeline
         from control_plane.company_brain.record_sync import sync_records

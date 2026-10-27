@@ -40,7 +40,10 @@ CREATE TABLE IF NOT EXISTS runs (
     status TEXT NOT NULL DEFAULT 'running',
     cost_usd REAL NOT NULL DEFAULT 0,
     tokens_in INTEGER NOT NULL DEFAULT 0,
-    tokens_out INTEGER NOT NULL DEFAULT 0
+    tokens_out INTEGER NOT NULL DEFAULT 0,
+    conversation_id TEXT NOT NULL DEFAULT '',
+    journey_id TEXT NOT NULL DEFAULT '',
+    parent_run_id TEXT NOT NULL DEFAULT ''
 );
 
 -- The step label has no column type so a number or a text label is kept as given.
@@ -78,3 +81,15 @@ CREATE TABLE IF NOT EXISTS scores (
     at TEXT,
     detail TEXT
 );
+
+-- What one person asked an agent to remember. Private to that person. A forgotten item keeps its row but loses its text.
+CREATE TABLE IF NOT EXISTS person_memory (
+    item_id TEXT PRIMARY KEY,
+    person_id TEXT NOT NULL,
+    text TEXT NOT NULL,
+    area_id TEXT,
+    created_at TEXT NOT NULL,
+    source_journey_id TEXT,
+    deleted_at TEXT
+);
+CREATE INDEX IF NOT EXISTS person_memory_by_person ON person_memory(person_id, item_id);
