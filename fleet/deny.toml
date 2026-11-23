@@ -8,13 +8,6 @@
 # Advisories triaged and documented in docs/blueprints-next/SECURITY-TRIAGE.md.
 # Each entry has: advisory ID, package, triage verdict, and exposure analysis.
 ignore = [
-    # RUSTSEC-2023-0086 / GHSA-2326-pfpj-vx3h: lexical-core@0.7.6
-    # Triage: unsoundness in numeric parsing (UAF in misaligned read).
-    # Exposure: transitive via tantivy; fleet uses tantivy for read-only text
-    # retrieval (BM25 scoring). Fleet never passes adversarial numeric strings
-    # to lexical-core directly. Fix: update tantivy to pull in lexical-core ≥0.8
-    # when tantivy publishes a compatible release (tracked in TECH_DEBT.md).
-    { id = "RUSTSEC-2023-0086", reason = "transitive via tantivy; no direct adversarial input path; update when tantivy upgrades" },
     # RUSTSEC-2026-0253: lru@0.16.4
     # Triage: informational advisory in the lru cache crate.
     # Exposure: transitive dependency with no direct fleet usage of affected API.
